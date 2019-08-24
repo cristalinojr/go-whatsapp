@@ -3,6 +3,7 @@ package whatsapp
 import (
 	"github.com/Rhymen/go-whatsapp/binary"
 	"strings"
+	"fmt"
 )
 
 type Store struct {
@@ -39,6 +40,8 @@ func (wac *Conn) updateContacts(contacts interface{}) {
 		return
 	}
 
+	fmt.Println("Received", len(c), "contacts")
+
 	for _, contact := range c {
 		contactNode, ok := contact.(binary.Node)
 		if !ok {
@@ -46,6 +49,7 @@ func (wac *Conn) updateContacts(contacts interface{}) {
 		}
 
 		jid := strings.Replace(contactNode.Attributes["jid"], "@c.us", "@s.whatsapp.net", 1)
+		fmt.Println("Received contact:", contactNode.Attributes)
 		wac.Store.Contacts[jid] = Contact{
 			jid,
 			contactNode.Attributes["notify"],
@@ -61,6 +65,7 @@ func (wac *Conn) updateChats(chats interface{}) {
 		return
 	}
 
+	fmt.Println("Received", len(c), "chats")
 	for _, chat := range c {
 		chatNode, ok := chat.(binary.Node)
 		if !ok {

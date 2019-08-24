@@ -5,13 +5,16 @@ import (
 	"crypto/sha256"
 	"encoding/json"
 	"fmt"
-	"github.com/Rhymen/go-whatsapp/binary"
-	"github.com/Rhymen/go-whatsapp/crypto/cbc"
-	"github.com/gorilla/websocket"
-	"github.com/pkg/errors"
 	"io"
 	"io/ioutil"
 	"strings"
+	"unicode"
+
+	"github.com/gorilla/websocket"
+	"github.com/pkg/errors"
+
+	"github.com/Rhymen/go-whatsapp/binary"
+	"github.com/Rhymen/go-whatsapp/crypto/cbc"
 )
 
 func (wac *Conn) readPump() {
@@ -57,6 +60,20 @@ func (wac *Conn) processReadData(msgType int, msg []byte) error {
 		data[0] = "!"
 	}
 
+	min := func(a, b int) int {
+		if a < b {
+			return a
+		}
+		return b
+	}
+
+	for _, ch := range data[0][:min(len(data[0]), 10)] + data[1][:min(len(data[1]), 20)] {
+		if !unicode.IsPrint(ch) {
+			goto unprintable
+		}
+	}
+	fmt.Println("Read:", data)
+unprintable:
 	if len(data) != 2 || len(data[1]) == 0 {
 		return ErrInvalidWsData
 	}

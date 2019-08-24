@@ -357,6 +357,7 @@ func (wac *Conn) Restore() error {
 	select {
 	case r := <-initChan:
 		var resp map[string]interface{}
+		fmt.Println("initChan:", r)
 		if err = json.Unmarshal([]byte(r), &resp); err != nil {
 			return fmt.Errorf("error decoding login connResp: %v\n", err)
 		}
@@ -381,6 +382,7 @@ func (wac *Conn) Restore() error {
 		select {
 		case r := <-loginChan:
 			var resp map[string]interface{}
+			fmt.Println("loginChan:", r)
 			if err = json.Unmarshal([]byte(r), &resp); err != nil {
 				return fmt.Errorf("error decoding login connResp: %v\n", err)
 			}
@@ -418,6 +420,7 @@ func (wac *Conn) Restore() error {
 	select {
 	case r := <-loginChan:
 		var resp map[string]interface{}
+		fmt.Println("loginChan 2:", r)
 		if err = json.Unmarshal([]byte(r), &resp); err != nil {
 			return fmt.Errorf("error decoding login connResp: %v\n", err)
 		}

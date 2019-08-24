@@ -1,6 +1,7 @@
 package whatsapp
 
 import (
+	"encoding/json"
 	"fmt"
 	"github.com/Rhymen/go-whatsapp/binary"
 	"strconv"
@@ -131,6 +132,28 @@ func (wac *Conn) Read(jid, id string) (<-chan string, error) {
 	return wac.writeBinary(n, group, ignore, tag)
 }
 
+func (wac *Conn) RawQuery(n binary.Node) (*binary.Node, error) {
+	ts := time.Now().Unix()
+	tag := fmt.Sprintf("%d.--%d", ts, wac.msgCount)
+	n.Attributes["epoch"] = strconv.Itoa(wac.msgCount)
+
+	d, _ := json.Marshal(n.Attributes)
+	fmt.Println("Query:", tag, string(d))
+
+	ch, err := wac.writeBinary(n, group, ignore, tag)
+	if err != nil {
+		return nil, err
+	}
+
+	msg, err := wac.decryptBinaryMessage([]byte(<-ch))
+	if err != nil {
+		return nil, err
+	}
+
+	//TODO: use parseProtoMessage
+	return msg, nil
+}
+
 func (wac *Conn) query(t, jid, messageId, kind, owner, search string, count, page int) (*binary.Node, error) {
 	ts := time.Now().Unix()
 	tag := fmt.Sprintf("%d.--%d", ts, wac.msgCount)
@@ -170,6 +193,9 @@ func (wac *Conn) query(t, jid, messageId, kind, owner, search string, count, pag
 	if page != 0 {
 		n.Attributes["page"] = strconv.Itoa(page)
 	}
+
+	d, _ := json.Marshal(n.Attributes)
+	fmt.Println("Query:", tag, string(d))
 
 	ch, err := wac.writeBinary(n, group, ignore, tag)
 	if err != nil {

@@ -23,6 +23,7 @@ func (wac *Conn) writeJson(data []interface{}) (<-chan string, error) {
 	ts := time.Now().Unix()
 	messageTag := fmt.Sprintf("%d.--%d", ts, wac.msgCount)
 	bytes := []byte(fmt.Sprintf("%s,%s", messageTag, d))
+	fmt.Println("Write:", string(bytes))
 
 	ch, err := wac.write(websocket.TextMessage, messageTag, bytes)
 	if err != nil {

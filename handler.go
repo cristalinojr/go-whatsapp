@@ -161,7 +161,7 @@ func (wac *Conn) handle(message interface{}) {
 			if err, ok := errIfc.(error); ok {
 				wac.unsafeHandle(errors.Wrap(err, "panic in WhatsApp handler"))
 			} else {
-				wac.unsafeHandle(fmt.Errorf("panic in WhatsApp handler: %v", errIfc))
+				wac.unsafeHandle(errors.WithStack(fmt.Errorf("panic in WhatsApp handler: %v", errIfc)))
 			}
 		}
 	}()
@@ -289,6 +289,7 @@ func (wac *Conn) handleContacts(contacts interface{}) {
 		}
 
 		jid := strings.Replace(contactNode.Attributes["jid"], "@c.us", "@s.whatsapp.net", 1)
+		fmt.Println("Received contact:", contactNode.Attributes)
 		contactList = append(contactList, Contact{
 			jid,
 			contactNode.Attributes["notify"],
@@ -347,6 +348,7 @@ func (wac *Conn) dispatch(msg interface{}) {
 
 	switch message := msg.(type) {
 	case *binary.Node:
+		fmt.Println("Dispatch", message.Description, message.Attributes)
 		if message.Description == "action" {
 			if con, ok := message.Content.([]interface{}); ok {
 				for a := range con {
@@ -364,8 +366,10 @@ func (wac *Conn) dispatch(msg interface{}) {
 			wac.handleChats(message.Content)
 		}
 	case error:
+		fmt.Println("Error", message)
 		wac.handle(message)
 	case string:
+		fmt.Println("String", message)
 		wac.handle(message)
 	default:
 		fmt.Fprintf(os.Stderr, "unknown type in dipatcher chan: %T", msg)
