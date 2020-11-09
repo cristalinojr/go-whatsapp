@@ -1,4 +1,4 @@
-module github.com/Rhymen/go-whatsapp
+module github.com/cristalinojr/go-whatsapp
 
 go 1.11
 
