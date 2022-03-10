@@ -11,7 +11,7 @@ import (
 	"time"
 
 	"github.com/cristalinojr/go-whatsapp/binary"
-	"github.com/cristalinojr/go-whatsapp/binary/proto"
+	"github.com/cristalinojr/go-whatsapp/binary/protoo"
 )
 
 type MediaType string
@@ -23,10 +23,10 @@ const (
 	MediaDocument MediaType = "WhatsApp Document Keys"
 )
 
-func (wac *Conn) SendRaw(msg *proto.WebMessageInfo, output chan<- error) {
+func (wac *Conn) SendRaw(msg *protoo.WebMessageInfo, output chan<- error) {
 	ch, err := wac.sendProto(msg)
 	if err != nil {
-		output <- fmt.Errorf("could not send proto: %w", err)
+		output <- fmt.Errorf("could not send protoo: %w", err)
 		return
 	}
 	response := <-ch
@@ -41,10 +41,10 @@ func (wac *Conn) SendRaw(msg *proto.WebMessageInfo, output chan<- error) {
 }
 
 func (wac *Conn) Send(msg interface{}) (string, error) {
-	var msgProto *proto.WebMessageInfo
+	var msgProto *protoo.WebMessageInfo
 
 	switch m := msg.(type) {
-	case *proto.WebMessageInfo:
+	case *protoo.WebMessageInfo:
 		msgProto = m
 	case TextMessage:
 		msgProto = getTextProto(m)
@@ -85,11 +85,11 @@ func (wac *Conn) Send(msg interface{}) (string, error) {
 	default:
 		return "ERROR", fmt.Errorf("cannot match type %T, use message types declared in the package", msg)
 	}
-	status := proto.WebMessageInfo_PENDING
+	status := protoo.WebMessageInfo_PENDING
 	msgProto.Status = &status
 	ch, err := wac.sendProto(msgProto)
 	if err != nil {
-		return "ERROR", fmt.Errorf("could not send proto: %v", err)
+		return "ERROR", fmt.Errorf("could not send protoo: %v", err)
 	}
 
 	select {
@@ -106,7 +106,7 @@ func (wac *Conn) Send(msg interface{}) (string, error) {
 	}
 }
 
-func (wac *Conn) sendProto(p *proto.WebMessageInfo) (<-chan string, error) {
+func (wac *Conn) sendProto(p *protoo.WebMessageInfo) (<-chan string, error) {
 	n := binary.Node{
 		Description: "action",
 		Attributes: map[string]string{
@@ -126,20 +126,20 @@ func (wac *Conn) RevokeMessage(remotejid, msgid string, fromme bool) (revokeid s
 	revocationID := strings.ToUpper(hex.EncodeToString(rawrevocationID))
 	//
 	ts := uint64(time.Now().Unix())
-	status := proto.WebMessageInfo_PENDING
-	mtype := proto.ProtocolMessage_REVOKE
+	status := protoo.WebMessageInfo_PENDING
+	mtype := protoo.ProtocolMessage_REVOKE
 
-	revoker := &proto.WebMessageInfo{
-		Key: &proto.MessageKey{
+	revoker := &protoo.WebMessageInfo{
+		Key: &protoo.MessageKey{
 			FromMe:    &fromme,
 			Id:        &revocationID,
 			RemoteJid: &remotejid,
 		},
 		MessageTimestamp: &ts,
-		Message: &proto.Message{
-			ProtocolMessage: &proto.ProtocolMessage{
+		Message: &protoo.Message{
+			ProtocolMessage: &protoo.ProtocolMessage{
 				Type: &mtype,
-				Key: &proto.MessageKey{
+				Key: &protoo.MessageKey{
 					FromMe:    &fromme,
 					Id:        &msgid,
 					RemoteJid: &remotejid,
@@ -159,7 +159,7 @@ func (wac *Conn) RevokeMessage(remotejid, msgid string, fromme bool) (revokeid s
 func (wac *Conn) DeleteMessage(remotejid, msgid string, fromMe bool) error {
 	ch, err := wac.deleteChatProto(remotejid, msgid, fromMe)
 	if err != nil {
-		return fmt.Errorf("could not send proto: %v", err)
+		return fmt.Errorf("could not send protoo: %v", err)
 	}
 
 	select {
@@ -228,7 +228,7 @@ type MessageInfo struct {
 	PushName  string
 	Status    MessageStatus
 
-	Source *proto.WebMessageInfo
+	Source *protoo.WebMessageInfo
 }
 
 type MessageStatus int
@@ -242,7 +242,7 @@ const (
 	Played                    = 5
 )
 
-func getMessageInfo(msg *proto.WebMessageInfo) MessageInfo {
+func getMessageInfo(msg *protoo.WebMessageInfo) MessageInfo {
 	return MessageInfo{
 		Id:        msg.GetKey().GetId(),
 		RemoteJid: msg.GetKey().GetRemoteJid(),
@@ -255,7 +255,7 @@ func getMessageInfo(msg *proto.WebMessageInfo) MessageInfo {
 	}
 }
 
-func getInfoProto(info *MessageInfo) *proto.WebMessageInfo {
+func getInfoProto(info *MessageInfo) *protoo.WebMessageInfo {
 	if info.Id == "" || len(info.Id) < 2 {
 		b := make([]byte, 10)
 		rand.Read(b)
@@ -266,10 +266,10 @@ func getInfoProto(info *MessageInfo) *proto.WebMessageInfo {
 	}
 	info.FromMe = true
 
-	status := proto.WebMessageInfo_WebMessageInfoStatus(info.Status)
+	status := protoo.WebMessageInfo_WebMessageInfoStatus(info.Status)
 
-	return &proto.WebMessageInfo{
-		Key: &proto.MessageKey{
+	return &protoo.WebMessageInfo{
+		Key: &protoo.MessageKey{
 			FromMe:    &info.FromMe,
 			RemoteJid: &info.RemoteJid,
 			Id:        &info.Id,
@@ -284,13 +284,13 @@ ContextInfo represents contextinfo of every message
 */
 type ContextInfo struct {
 	QuotedMessageID string //StanzaId
-	QuotedMessage   *proto.Message
+	QuotedMessage   *protoo.Message
 	Participant     string
 	IsForwarded     bool
 	MentionedJID    []string
 }
 
-func getMessageContext(msg *proto.ContextInfo) ContextInfo {
+func getMessageContext(msg *protoo.ContextInfo) ContextInfo {
 	return ContextInfo{
 		QuotedMessageID: msg.GetStanzaId(), //StanzaId
 		QuotedMessage:   msg.GetQuotedMessage(),
@@ -300,9 +300,9 @@ func getMessageContext(msg *proto.ContextInfo) ContextInfo {
 	}
 }
 
-func getContextInfoProto(context *ContextInfo) *proto.ContextInfo {
+func getContextInfoProto(context *ContextInfo) *protoo.ContextInfo {
 	if len(context.QuotedMessageID) > 0 {
-		contextInfo := &proto.ContextInfo{
+		contextInfo := &protoo.ContextInfo{
 			StanzaId: &context.QuotedMessageID,
 		}
 
@@ -326,7 +326,7 @@ type TextMessage struct {
 	ContextInfo ContextInfo
 }
 
-func getTextMessage(msg *proto.WebMessageInfo) TextMessage {
+func getTextMessage(msg *protoo.WebMessageInfo) TextMessage {
 	text := TextMessage{Info: getMessageInfo(msg)}
 	if m := msg.GetMessage().GetExtendedTextMessage(); m != nil {
 		text.Text = m.GetText()
@@ -340,17 +340,17 @@ func getTextMessage(msg *proto.WebMessageInfo) TextMessage {
 	return text
 }
 
-func getTextProto(msg TextMessage) *proto.WebMessageInfo {
+func getTextProto(msg TextMessage) *protoo.WebMessageInfo {
 	p := getInfoProto(&msg.Info)
 	contextInfo := getContextInfoProto(&msg.ContextInfo)
 
 	if contextInfo == nil {
-		p.Message = &proto.Message{
+		p.Message = &protoo.Message{
 			Conversation: &msg.Text,
 		}
 	} else {
-		p.Message = &proto.Message{
-			ExtendedTextMessage: &proto.ExtendedTextMessage{
+		p.Message = &protoo.Message{
+			ExtendedTextMessage: &protoo.ExtendedTextMessage{
 				Text:        &msg.Text,
 				ContextInfo: contextInfo,
 			},
@@ -378,7 +378,7 @@ type ImageMessage struct {
 	ContextInfo   ContextInfo
 }
 
-func getImageMessage(msg *proto.WebMessageInfo) ImageMessage {
+func getImageMessage(msg *protoo.WebMessageInfo) ImageMessage {
 	image := msg.GetMessage().GetImageMessage()
 
 	imageMessage := ImageMessage{
@@ -397,12 +397,12 @@ func getImageMessage(msg *proto.WebMessageInfo) ImageMessage {
 	return imageMessage
 }
 
-func getImageProto(msg ImageMessage) *proto.WebMessageInfo {
+func getImageProto(msg ImageMessage) *protoo.WebMessageInfo {
 	p := getInfoProto(&msg.Info)
 	contextInfo := getContextInfoProto(&msg.ContextInfo)
 
-	p.Message = &proto.Message{
-		ImageMessage: &proto.ImageMessage{
+	p.Message = &protoo.Message{
+		ImageMessage: &protoo.ImageMessage{
 			Caption:       &msg.Caption,
 			JpegThumbnail: msg.Thumbnail,
 			Url:           &msg.url,
@@ -444,7 +444,7 @@ type VideoMessage struct {
 	ContextInfo   ContextInfo
 }
 
-func getVideoMessage(msg *proto.WebMessageInfo) VideoMessage {
+func getVideoMessage(msg *protoo.WebMessageInfo) VideoMessage {
 	vid := msg.GetMessage().GetVideoMessage()
 
 	videoMessage := VideoMessage{
@@ -465,12 +465,12 @@ func getVideoMessage(msg *proto.WebMessageInfo) VideoMessage {
 	return videoMessage
 }
 
-func getVideoProto(msg VideoMessage) *proto.WebMessageInfo {
+func getVideoProto(msg VideoMessage) *protoo.WebMessageInfo {
 	p := getInfoProto(&msg.Info)
 	contextInfo := getContextInfoProto(&msg.ContextInfo)
 
-	p.Message = &proto.Message{
-		VideoMessage: &proto.VideoMessage{
+	p.Message = &protoo.Message{
+		VideoMessage: &protoo.VideoMessage{
 			Caption:       &msg.Caption,
 			JpegThumbnail: msg.Thumbnail,
 			Url:           &msg.url,
@@ -512,7 +512,7 @@ type AudioMessage struct {
 	ContextInfo   ContextInfo
 }
 
-func getAudioMessage(msg *proto.WebMessageInfo) AudioMessage {
+func getAudioMessage(msg *protoo.WebMessageInfo) AudioMessage {
 	aud := msg.GetMessage().GetAudioMessage()
 
 	audioMessage := AudioMessage{
@@ -530,11 +530,11 @@ func getAudioMessage(msg *proto.WebMessageInfo) AudioMessage {
 	return audioMessage
 }
 
-func getAudioProto(msg AudioMessage) *proto.WebMessageInfo {
+func getAudioProto(msg AudioMessage) *protoo.WebMessageInfo {
 	p := getInfoProto(&msg.Info)
 	contextInfo := getContextInfoProto(&msg.ContextInfo)
-	p.Message = &proto.Message{
-		AudioMessage: &proto.AudioMessage{
+	p.Message = &protoo.Message{
+		AudioMessage: &protoo.AudioMessage{
 			Url:           &msg.url,
 			MediaKey:      msg.mediaKey,
 			Seconds:       &msg.Length,
@@ -576,7 +576,7 @@ type DocumentMessage struct {
 	ContextInfo   ContextInfo
 }
 
-func getDocumentMessage(msg *proto.WebMessageInfo) DocumentMessage {
+func getDocumentMessage(msg *protoo.WebMessageInfo) DocumentMessage {
 	doc := msg.GetMessage().GetDocumentMessage()
 
 	documentMessage := DocumentMessage{
@@ -597,11 +597,11 @@ func getDocumentMessage(msg *proto.WebMessageInfo) DocumentMessage {
 	return documentMessage
 }
 
-func getDocumentProto(msg DocumentMessage) *proto.WebMessageInfo {
+func getDocumentProto(msg DocumentMessage) *protoo.WebMessageInfo {
 	p := getInfoProto(&msg.Info)
 	contextInfo := getContextInfoProto(&msg.ContextInfo)
-	p.Message = &proto.Message{
-		DocumentMessage: &proto.DocumentMessage{
+	p.Message = &protoo.Message{
+		DocumentMessage: &protoo.DocumentMessage{
 			JpegThumbnail: msg.Thumbnail,
 			Url:           &msg.url,
 			MediaKey:      msg.mediaKey,
@@ -638,7 +638,7 @@ type LocationMessage struct {
 	ContextInfo      ContextInfo
 }
 
-func GetLocationMessage(msg *proto.WebMessageInfo) LocationMessage {
+func GetLocationMessage(msg *protoo.WebMessageInfo) LocationMessage {
 	loc := msg.GetMessage().GetLocationMessage()
 
 	locationMessage := LocationMessage{
@@ -655,12 +655,12 @@ func GetLocationMessage(msg *proto.WebMessageInfo) LocationMessage {
 	return locationMessage
 }
 
-func GetLocationProto(msg LocationMessage) *proto.WebMessageInfo {
+func GetLocationProto(msg LocationMessage) *protoo.WebMessageInfo {
 	p := getInfoProto(&msg.Info)
 	contextInfo := getContextInfoProto(&msg.ContextInfo)
 
-	p.Message = &proto.Message{
-		LocationMessage: &proto.LocationMessage{
+	p.Message = &protoo.Message{
+		LocationMessage: &protoo.LocationMessage{
 			DegreesLatitude:  &msg.DegreesLatitude,
 			DegreesLongitude: &msg.DegreesLongitude,
 			Name:             &msg.Name,
@@ -689,7 +689,7 @@ type LiveLocationMessage struct {
 	ContextInfo                       ContextInfo
 }
 
-func GetLiveLocationMessage(msg *proto.WebMessageInfo) LiveLocationMessage {
+func GetLiveLocationMessage(msg *protoo.WebMessageInfo) LiveLocationMessage {
 	loc := msg.GetMessage().GetLiveLocationMessage()
 
 	liveLocationMessage := LiveLocationMessage{
@@ -708,11 +708,11 @@ func GetLiveLocationMessage(msg *proto.WebMessageInfo) LiveLocationMessage {
 	return liveLocationMessage
 }
 
-func GetLiveLocationProto(msg LiveLocationMessage) *proto.WebMessageInfo {
+func GetLiveLocationProto(msg LiveLocationMessage) *protoo.WebMessageInfo {
 	p := getInfoProto(&msg.Info)
 	contextInfo := getContextInfoProto(&msg.ContextInfo)
-	p.Message = &proto.Message{
-		LiveLocationMessage: &proto.LiveLocationMessage{
+	p.Message = &protoo.Message{
+		LiveLocationMessage: &protoo.LiveLocationMessage{
 			DegreesLatitude:                   &msg.DegreesLatitude,
 			DegreesLongitude:                  &msg.DegreesLongitude,
 			AccuracyInMeters:                  &msg.AccuracyInMeters,
@@ -744,7 +744,7 @@ type StickerMessage struct {
 	ContextInfo ContextInfo
 }
 
-func getStickerMessage(msg *proto.WebMessageInfo) StickerMessage {
+func getStickerMessage(msg *protoo.WebMessageInfo) StickerMessage {
 	sticker := msg.GetMessage().GetStickerMessage()
 
 	stickerMessage := StickerMessage{
@@ -781,7 +781,7 @@ type ContactMessage struct {
 	ContextInfo ContextInfo
 }
 
-func getContactMessage(msg *proto.WebMessageInfo) ContactMessage {
+func getContactMessage(msg *protoo.WebMessageInfo) ContactMessage {
 	contact := msg.GetMessage().GetContactMessage()
 
 	contactMessage := ContactMessage{
@@ -796,12 +796,12 @@ func getContactMessage(msg *proto.WebMessageInfo) ContactMessage {
 	return contactMessage
 }
 
-func getContactMessageProto(msg ContactMessage) *proto.WebMessageInfo {
+func getContactMessageProto(msg ContactMessage) *protoo.WebMessageInfo {
 	p := getInfoProto(&msg.Info)
 	contextInfo := getContextInfoProto(&msg.ContextInfo)
 
-	p.Message = &proto.Message{
-		ContactMessage: &proto.ContactMessage{
+	p.Message = &protoo.Message{
+		ContactMessage: &protoo.ContactMessage{
 			DisplayName: &msg.DisplayName,
 			Vcard:       &msg.Vcard,
 			ContextInfo: contextInfo,
@@ -811,7 +811,7 @@ func getContactMessageProto(msg ContactMessage) *proto.WebMessageInfo {
 	return p
 }
 
-func ParseProtoMessage(msg *proto.WebMessageInfo) interface{} {
+func ParseProtoMessage(msg *protoo.WebMessageInfo) interface{} {
 
 	switch {
 

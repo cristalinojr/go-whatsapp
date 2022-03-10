@@ -198,7 +198,7 @@ func (wac *Conn) setGroup(t, jid, subject string, participants []string) (<-chan
 	ts := time.Now().Unix()
 	tag := fmt.Sprintf("%d.--%d", ts, wac.msgCount)
 
-	//TODO: get proto or improve encoder to handle []interface{}
+	//TODO: get protoo or improve encoder to handle []interface{}
 
 	p := buildParticipantNodes(participants)
 
