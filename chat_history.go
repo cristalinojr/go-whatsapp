@@ -2,7 +2,7 @@ package whatsapp
 
 import (
 	"github.com/cristalinojr/go-whatsapp/binary"
-	"github.com/cristalinojr/go-whatsapp/binary/proto"
+	"github.com/cristalinojr/go-whatsapp/binary/protox"
 	"log"
 	"strconv"
 	"time"
@@ -13,9 +13,9 @@ type MessageOffsetInfo struct {
 	FirstMessageOwner bool
 }
 
-func decodeMessages(n *binary.Node) []*proto.WebMessageInfo {
+func decodeMessages(n *binary.Node) []*protox.WebMessageInfo {
 
-	var messages = make([]*proto.WebMessageInfo, 0)
+	var messages = make([]*protox.WebMessageInfo, 0)
 
 	if n == nil || n.Attributes == nil || n.Content == nil {
 		return messages
@@ -23,8 +23,8 @@ func decodeMessages(n *binary.Node) []*proto.WebMessageInfo {
 
 	for _, msg := range n.Content.([]interface{}) {
 		switch msg.(type) {
-		case *proto.WebMessageInfo:
-			messages = append(messages, msg.(*proto.WebMessageInfo))
+		case *protox.WebMessageInfo:
+			messages = append(messages, msg.(*protox.WebMessageInfo))
 		default:
 			log.Println("decodeMessages: Non WebMessage encountered")
 		}

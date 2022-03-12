@@ -4,7 +4,7 @@
 // 	protoc        v3.12.3
 // source: def.proto
 
-package proto
+package protox
 
 import (
 	protoreflect "google.golang.org/protobuf/reflect/protoreflect"
@@ -2460,7 +2460,7 @@ type AdReplyInfo struct {
 	unknownFields protoimpl.UnknownFields
 
 	AdvertiserName *string                           `protobuf:"bytes,1,opt,name=advertiserName" json:"advertiserName,omitempty"`
-	MediaType      *AdReplyInfo_AdReplyInfoMediaType `protobuf:"varint,2,opt,name=mediaType,enum=proto.AdReplyInfo_AdReplyInfoMediaType" json:"mediaType,omitempty"`
+	MediaType      *AdReplyInfo_AdReplyInfoMediaType `protobuf:"varint,2,opt,name=mediaType,enum=protox.AdReplyInfo_AdReplyInfoMediaType" json:"mediaType,omitempty"`
 	JpegThumbnail  []byte                            `protobuf:"bytes,16,opt,name=jpegThumbnail" json:"jpegThumbnail,omitempty"`
 	Caption        *string                           `protobuf:"bytes,17,opt,name=caption" json:"caption,omitempty"`
 }
@@ -2532,7 +2532,7 @@ type ExternalAdReplyInfo struct {
 
 	Title        *string                                           `protobuf:"bytes,1,opt,name=title" json:"title,omitempty"`
 	Body         *string                                           `protobuf:"bytes,2,opt,name=body" json:"body,omitempty"`
-	MediaType    *ExternalAdReplyInfo_ExternalAdReplyInfoMediaType `protobuf:"varint,3,opt,name=mediaType,enum=proto.ExternalAdReplyInfo_ExternalAdReplyInfoMediaType" json:"mediaType,omitempty"`
+	MediaType    *ExternalAdReplyInfo_ExternalAdReplyInfoMediaType `protobuf:"varint,3,opt,name=mediaType,enum=protox.ExternalAdReplyInfo_ExternalAdReplyInfoMediaType" json:"mediaType,omitempty"`
 	ThumbnailUrl *string                                           `protobuf:"bytes,4,opt,name=thumbnailUrl" json:"thumbnailUrl,omitempty"`
 	MediaUrl     *string                                           `protobuf:"bytes,5,opt,name=mediaUrl" json:"mediaUrl,omitempty"`
 	Thumbnail    []byte                                            `protobuf:"bytes,6,opt,name=thumbnail" json:"thumbnail,omitempty"`
@@ -3283,8 +3283,8 @@ type ExtendedTextMessage struct {
 	Title           *string                                             `protobuf:"bytes,6,opt,name=title" json:"title,omitempty"`
 	TextArgb        *uint32                                             `protobuf:"fixed32,7,opt,name=textArgb" json:"textArgb,omitempty"`
 	BackgroundArgb  *uint32                                             `protobuf:"fixed32,8,opt,name=backgroundArgb" json:"backgroundArgb,omitempty"`
-	Font            *ExtendedTextMessage_ExtendedTextMessageFontType    `protobuf:"varint,9,opt,name=font,enum=proto.ExtendedTextMessage_ExtendedTextMessageFontType" json:"font,omitempty"`
-	PreviewType     *ExtendedTextMessage_ExtendedTextMessagePreviewType `protobuf:"varint,10,opt,name=previewType,enum=proto.ExtendedTextMessage_ExtendedTextMessagePreviewType" json:"previewType,omitempty"`
+	Font            *ExtendedTextMessage_ExtendedTextMessageFontType    `protobuf:"varint,9,opt,name=font,enum=protox.ExtendedTextMessage_ExtendedTextMessageFontType" json:"font,omitempty"`
+	PreviewType     *ExtendedTextMessage_ExtendedTextMessagePreviewType `protobuf:"varint,10,opt,name=previewType,enum=protox.ExtendedTextMessage_ExtendedTextMessagePreviewType" json:"previewType,omitempty"`
 	JpegThumbnail   []byte                                              `protobuf:"bytes,16,opt,name=jpegThumbnail" json:"jpegThumbnail,omitempty"`
 	ContextInfo     *ContextInfo                                        `protobuf:"bytes,17,opt,name=contextInfo" json:"contextInfo,omitempty"`
 	DoNotPlayInline *bool                                               `protobuf:"varint,18,opt,name=doNotPlayInline" json:"doNotPlayInline,omitempty"`
@@ -3754,7 +3754,7 @@ type VideoMessage struct {
 	JpegThumbnail          []byte                                `protobuf:"bytes,16,opt,name=jpegThumbnail" json:"jpegThumbnail,omitempty"`
 	ContextInfo            *ContextInfo                          `protobuf:"bytes,17,opt,name=contextInfo" json:"contextInfo,omitempty"`
 	StreamingSidecar       []byte                                `protobuf:"bytes,18,opt,name=streamingSidecar" json:"streamingSidecar,omitempty"`
-	GifAttribution         *VideoMessage_VideoMessageAttribution `protobuf:"varint,19,opt,name=gifAttribution,enum=proto.VideoMessage_VideoMessageAttribution" json:"gifAttribution,omitempty"`
+	GifAttribution         *VideoMessage_VideoMessageAttribution `protobuf:"varint,19,opt,name=gifAttribution,enum=protox.VideoMessage_VideoMessageAttribution" json:"gifAttribution,omitempty"`
 	ViewOnce               *bool                                 `protobuf:"varint,20,opt,name=viewOnce" json:"viewOnce,omitempty"`
 }
 
@@ -4031,7 +4031,7 @@ type ProtocolMessage struct {
 	unknownFields protoimpl.UnknownFields
 
 	Key                                    *MessageKey                             `protobuf:"bytes,1,opt,name=key" json:"key,omitempty"`
-	Type                                   *ProtocolMessage_ProtocolMessageType    `protobuf:"varint,2,opt,name=type,enum=proto.ProtocolMessage_ProtocolMessageType" json:"type,omitempty"`
+	Type                                   *ProtocolMessage_ProtocolMessageType    `protobuf:"varint,2,opt,name=type,enum=protox.ProtocolMessage_ProtocolMessageType" json:"type,omitempty"`
 	EphemeralExpiration                    *uint32                                 `protobuf:"varint,4,opt,name=ephemeralExpiration" json:"ephemeralExpiration,omitempty"`
 	EphemeralSettingTimestamp              *int64                                  `protobuf:"varint,5,opt,name=ephemeralSettingTimestamp" json:"ephemeralSettingTimestamp,omitempty"`
 	HistorySyncNotification                *HistorySyncNotification                `protobuf:"bytes,6,opt,name=historySyncNotification" json:"historySyncNotification,omitempty"`
@@ -4138,7 +4138,7 @@ type HistorySyncNotification struct {
 	MediaKey          []byte                                                          `protobuf:"bytes,3,opt,name=mediaKey" json:"mediaKey,omitempty"`
 	FileEncSha256     []byte                                                          `protobuf:"bytes,4,opt,name=fileEncSha256" json:"fileEncSha256,omitempty"`
 	DirectPath        *string                                                         `protobuf:"bytes,5,opt,name=directPath" json:"directPath,omitempty"`
-	SyncType          *HistorySyncNotification_HistorySyncNotificationHistorySyncType `protobuf:"varint,6,opt,name=syncType,enum=proto.HistorySyncNotification_HistorySyncNotificationHistorySyncType" json:"syncType,omitempty"`
+	SyncType          *HistorySyncNotification_HistorySyncNotificationHistorySyncType `protobuf:"varint,6,opt,name=syncType,enum=protox.HistorySyncNotification_HistorySyncNotificationHistorySyncType" json:"syncType,omitempty"`
 	ChunkOrder        *uint32                                                         `protobuf:"varint,7,opt,name=chunkOrder" json:"chunkOrder,omitempty"`
 	OriginalMessageId *string                                                         `protobuf:"bytes,8,opt,name=originalMessageId" json:"originalMessageId,omitempty"`
 }
@@ -4723,13 +4723,13 @@ type HSMDateTimeComponent struct {
 	sizeCache     protoimpl.SizeCache
 	unknownFields protoimpl.UnknownFields
 
-	DayOfWeek  *HSMDateTimeComponent_HSMDateTimeComponentDayOfWeekType `protobuf:"varint,1,opt,name=dayOfWeek,enum=proto.HSMDateTimeComponent_HSMDateTimeComponentDayOfWeekType" json:"dayOfWeek,omitempty"`
+	DayOfWeek  *HSMDateTimeComponent_HSMDateTimeComponentDayOfWeekType `protobuf:"varint,1,opt,name=dayOfWeek,enum=protox.HSMDateTimeComponent_HSMDateTimeComponentDayOfWeekType" json:"dayOfWeek,omitempty"`
 	Year       *uint32                                                 `protobuf:"varint,2,opt,name=year" json:"year,omitempty"`
 	Month      *uint32                                                 `protobuf:"varint,3,opt,name=month" json:"month,omitempty"`
 	DayOfMonth *uint32                                                 `protobuf:"varint,4,opt,name=dayOfMonth" json:"dayOfMonth,omitempty"`
 	Hour       *uint32                                                 `protobuf:"varint,5,opt,name=hour" json:"hour,omitempty"`
 	Minute     *uint32                                                 `protobuf:"varint,6,opt,name=minute" json:"minute,omitempty"`
-	Calendar   *HSMDateTimeComponent_HSMDateTimeComponentCalendarType  `protobuf:"varint,7,opt,name=calendar,enum=proto.HSMDateTimeComponent_HSMDateTimeComponentCalendarType" json:"calendar,omitempty"`
+	Calendar   *HSMDateTimeComponent_HSMDateTimeComponentCalendarType  `protobuf:"varint,7,opt,name=calendar,enum=protox.HSMDateTimeComponent_HSMDateTimeComponentCalendarType" json:"calendar,omitempty"`
 }
 
 func (x *HSMDateTimeComponent) Reset() {
@@ -6373,8 +6373,8 @@ type OrderMessage struct {
 	OrderId     *string                                `protobuf:"bytes,1,opt,name=orderId" json:"orderId,omitempty"`
 	Thumbnail   []byte                                 `protobuf:"bytes,2,opt,name=thumbnail" json:"thumbnail,omitempty"`
 	ItemCount   *int32                                 `protobuf:"varint,3,opt,name=itemCount" json:"itemCount,omitempty"`
-	Status      *OrderMessage_OrderMessageOrderStatus  `protobuf:"varint,4,opt,name=status,enum=proto.OrderMessage_OrderMessageOrderStatus" json:"status,omitempty"`
-	Surface     *OrderMessage_OrderMessageOrderSurface `protobuf:"varint,5,opt,name=surface,enum=proto.OrderMessage_OrderMessageOrderSurface" json:"surface,omitempty"`
+	Status      *OrderMessage_OrderMessageOrderStatus  `protobuf:"varint,4,opt,name=status,enum=protox.OrderMessage_OrderMessageOrderStatus" json:"status,omitempty"`
+	Surface     *OrderMessage_OrderMessageOrderSurface `protobuf:"varint,5,opt,name=surface,enum=protox.OrderMessage_OrderMessageOrderSurface" json:"surface,omitempty"`
 	Message     *string                                `protobuf:"bytes,6,opt,name=message" json:"message,omitempty"`
 	OrderTitle  *string                                `protobuf:"bytes,7,opt,name=orderTitle" json:"orderTitle,omitempty"`
 	SellerJid   *string                                `protobuf:"bytes,8,opt,name=sellerJid" json:"sellerJid,omitempty"`
@@ -6610,7 +6610,7 @@ type ListMessage struct {
 	Title       *string                          `protobuf:"bytes,1,opt,name=title" json:"title,omitempty"`
 	Description *string                          `protobuf:"bytes,2,opt,name=description" json:"description,omitempty"`
 	ButtonText  *string                          `protobuf:"bytes,3,opt,name=buttonText" json:"buttonText,omitempty"`
-	ListType    *ListMessage_ListMessageListType `protobuf:"varint,4,opt,name=listType,enum=proto.ListMessage_ListMessageListType" json:"listType,omitempty"`
+	ListType    *ListMessage_ListMessageListType `protobuf:"varint,4,opt,name=listType,enum=protox.ListMessage_ListMessageListType" json:"listType,omitempty"`
 	Sections    []*Section                       `protobuf:"bytes,5,rep,name=sections" json:"sections,omitempty"`
 }
 
@@ -6734,7 +6734,7 @@ type ListResponseMessage struct {
 	unknownFields protoimpl.UnknownFields
 
 	SelectedDisplayText *string                                          `protobuf:"bytes,1,opt,name=selectedDisplayText" json:"selectedDisplayText,omitempty"`
-	ListType            *ListResponseMessage_ListResponseMessageListType `protobuf:"varint,2,opt,name=listType,enum=proto.ListResponseMessage_ListResponseMessageListType" json:"listType,omitempty"`
+	ListType            *ListResponseMessage_ListResponseMessageListType `protobuf:"varint,2,opt,name=listType,enum=protox.ListResponseMessage_ListResponseMessageListType" json:"listType,omitempty"`
 	SingleSelectReply   *SingleSelectReply                               `protobuf:"bytes,3,opt,name=singleSelectReply" json:"singleSelectReply,omitempty"`
 	ContextInfo         *ContextInfo                                     `protobuf:"bytes,4,opt,name=contextInfo" json:"contextInfo,omitempty"`
 }
@@ -7446,42 +7446,42 @@ type WebFeatures struct {
 	sizeCache     protoimpl.SizeCache
 	unknownFields protoimpl.UnknownFields
 
-	LabelsDisplay                *WebFeatures_WebFeaturesFlag `protobuf:"varint,1,opt,name=labelsDisplay,enum=proto.WebFeatures_WebFeaturesFlag" json:"labelsDisplay,omitempty"`
-	VoipIndividualOutgoing       *WebFeatures_WebFeaturesFlag `protobuf:"varint,2,opt,name=voipIndividualOutgoing,enum=proto.WebFeatures_WebFeaturesFlag" json:"voipIndividualOutgoing,omitempty"`
-	GroupsV3                     *WebFeatures_WebFeaturesFlag `protobuf:"varint,3,opt,name=groupsV3,enum=proto.WebFeatures_WebFeaturesFlag" json:"groupsV3,omitempty"`
-	GroupsV3Create               *WebFeatures_WebFeaturesFlag `protobuf:"varint,4,opt,name=groupsV3Create,enum=proto.WebFeatures_WebFeaturesFlag" json:"groupsV3Create,omitempty"`
-	ChangeNumberV2               *WebFeatures_WebFeaturesFlag `protobuf:"varint,5,opt,name=changeNumberV2,enum=proto.WebFeatures_WebFeaturesFlag" json:"changeNumberV2,omitempty"`
-	QueryStatusV3Thumbnail       *WebFeatures_WebFeaturesFlag `protobuf:"varint,6,opt,name=queryStatusV3Thumbnail,enum=proto.WebFeatures_WebFeaturesFlag" json:"queryStatusV3Thumbnail,omitempty"`
-	LiveLocations                *WebFeatures_WebFeaturesFlag `protobuf:"varint,7,opt,name=liveLocations,enum=proto.WebFeatures_WebFeaturesFlag" json:"liveLocations,omitempty"`
-	QueryVname                   *WebFeatures_WebFeaturesFlag `protobuf:"varint,8,opt,name=queryVname,enum=proto.WebFeatures_WebFeaturesFlag" json:"queryVname,omitempty"`
-	VoipIndividualIncoming       *WebFeatures_WebFeaturesFlag `protobuf:"varint,9,opt,name=voipIndividualIncoming,enum=proto.WebFeatures_WebFeaturesFlag" json:"voipIndividualIncoming,omitempty"`
-	QuickRepliesQuery            *WebFeatures_WebFeaturesFlag `protobuf:"varint,10,opt,name=quickRepliesQuery,enum=proto.WebFeatures_WebFeaturesFlag" json:"quickRepliesQuery,omitempty"`
-	Payments                     *WebFeatures_WebFeaturesFlag `protobuf:"varint,11,opt,name=payments,enum=proto.WebFeatures_WebFeaturesFlag" json:"payments,omitempty"`
-	StickerPackQuery             *WebFeatures_WebFeaturesFlag `protobuf:"varint,12,opt,name=stickerPackQuery,enum=proto.WebFeatures_WebFeaturesFlag" json:"stickerPackQuery,omitempty"`
-	LiveLocationsFinal           *WebFeatures_WebFeaturesFlag `protobuf:"varint,13,opt,name=liveLocationsFinal,enum=proto.WebFeatures_WebFeaturesFlag" json:"liveLocationsFinal,omitempty"`
-	LabelsEdit                   *WebFeatures_WebFeaturesFlag `protobuf:"varint,14,opt,name=labelsEdit,enum=proto.WebFeatures_WebFeaturesFlag" json:"labelsEdit,omitempty"`
-	MediaUpload                  *WebFeatures_WebFeaturesFlag `protobuf:"varint,15,opt,name=mediaUpload,enum=proto.WebFeatures_WebFeaturesFlag" json:"mediaUpload,omitempty"`
-	MediaUploadRichQuickReplies  *WebFeatures_WebFeaturesFlag `protobuf:"varint,18,opt,name=mediaUploadRichQuickReplies,enum=proto.WebFeatures_WebFeaturesFlag" json:"mediaUploadRichQuickReplies,omitempty"`
-	VnameV2                      *WebFeatures_WebFeaturesFlag `protobuf:"varint,19,opt,name=vnameV2,enum=proto.WebFeatures_WebFeaturesFlag" json:"vnameV2,omitempty"`
-	VideoPlaybackUrl             *WebFeatures_WebFeaturesFlag `protobuf:"varint,20,opt,name=videoPlaybackUrl,enum=proto.WebFeatures_WebFeaturesFlag" json:"videoPlaybackUrl,omitempty"`
-	StatusRanking                *WebFeatures_WebFeaturesFlag `protobuf:"varint,21,opt,name=statusRanking,enum=proto.WebFeatures_WebFeaturesFlag" json:"statusRanking,omitempty"`
-	VoipIndividualVideo          *WebFeatures_WebFeaturesFlag `protobuf:"varint,22,opt,name=voipIndividualVideo,enum=proto.WebFeatures_WebFeaturesFlag" json:"voipIndividualVideo,omitempty"`
-	ThirdPartyStickers           *WebFeatures_WebFeaturesFlag `protobuf:"varint,23,opt,name=thirdPartyStickers,enum=proto.WebFeatures_WebFeaturesFlag" json:"thirdPartyStickers,omitempty"`
-	FrequentlyForwardedSetting   *WebFeatures_WebFeaturesFlag `protobuf:"varint,24,opt,name=frequentlyForwardedSetting,enum=proto.WebFeatures_WebFeaturesFlag" json:"frequentlyForwardedSetting,omitempty"`
-	GroupsV4JoinPermission       *WebFeatures_WebFeaturesFlag `protobuf:"varint,25,opt,name=groupsV4JoinPermission,enum=proto.WebFeatures_WebFeaturesFlag" json:"groupsV4JoinPermission,omitempty"`
-	RecentStickers               *WebFeatures_WebFeaturesFlag `protobuf:"varint,26,opt,name=recentStickers,enum=proto.WebFeatures_WebFeaturesFlag" json:"recentStickers,omitempty"`
-	Catalog                      *WebFeatures_WebFeaturesFlag `protobuf:"varint,27,opt,name=catalog,enum=proto.WebFeatures_WebFeaturesFlag" json:"catalog,omitempty"`
-	StarredStickers              *WebFeatures_WebFeaturesFlag `protobuf:"varint,28,opt,name=starredStickers,enum=proto.WebFeatures_WebFeaturesFlag" json:"starredStickers,omitempty"`
-	VoipGroupCall                *WebFeatures_WebFeaturesFlag `protobuf:"varint,29,opt,name=voipGroupCall,enum=proto.WebFeatures_WebFeaturesFlag" json:"voipGroupCall,omitempty"`
-	TemplateMessage              *WebFeatures_WebFeaturesFlag `protobuf:"varint,30,opt,name=templateMessage,enum=proto.WebFeatures_WebFeaturesFlag" json:"templateMessage,omitempty"`
-	TemplateMessageInteractivity *WebFeatures_WebFeaturesFlag `protobuf:"varint,31,opt,name=templateMessageInteractivity,enum=proto.WebFeatures_WebFeaturesFlag" json:"templateMessageInteractivity,omitempty"`
-	EphemeralMessages            *WebFeatures_WebFeaturesFlag `protobuf:"varint,32,opt,name=ephemeralMessages,enum=proto.WebFeatures_WebFeaturesFlag" json:"ephemeralMessages,omitempty"`
-	E2ENotificationSync          *WebFeatures_WebFeaturesFlag `protobuf:"varint,33,opt,name=e2ENotificationSync,enum=proto.WebFeatures_WebFeaturesFlag" json:"e2ENotificationSync,omitempty"`
-	RecentStickersV2             *WebFeatures_WebFeaturesFlag `protobuf:"varint,34,opt,name=recentStickersV2,enum=proto.WebFeatures_WebFeaturesFlag" json:"recentStickersV2,omitempty"`
-	SyncdRelease1                *WebFeatures_WebFeaturesFlag `protobuf:"varint,35,opt,name=syncdRelease1,enum=proto.WebFeatures_WebFeaturesFlag" json:"syncdRelease1,omitempty"`
-	RecentStickersV3             *WebFeatures_WebFeaturesFlag `protobuf:"varint,36,opt,name=recentStickersV3,enum=proto.WebFeatures_WebFeaturesFlag" json:"recentStickersV3,omitempty"`
-	UserNotice                   *WebFeatures_WebFeaturesFlag `protobuf:"varint,37,opt,name=userNotice,enum=proto.WebFeatures_WebFeaturesFlag" json:"userNotice,omitempty"`
-	SyncdRelease11               *WebFeatures_WebFeaturesFlag `protobuf:"varint,38,opt,name=syncdRelease11,enum=proto.WebFeatures_WebFeaturesFlag" json:"syncdRelease11,omitempty"`
+	LabelsDisplay                *WebFeatures_WebFeaturesFlag `protobuf:"varint,1,opt,name=labelsDisplay,enum=protox.WebFeatures_WebFeaturesFlag" json:"labelsDisplay,omitempty"`
+	VoipIndividualOutgoing       *WebFeatures_WebFeaturesFlag `protobuf:"varint,2,opt,name=voipIndividualOutgoing,enum=protox.WebFeatures_WebFeaturesFlag" json:"voipIndividualOutgoing,omitempty"`
+	GroupsV3                     *WebFeatures_WebFeaturesFlag `protobuf:"varint,3,opt,name=groupsV3,enum=protox.WebFeatures_WebFeaturesFlag" json:"groupsV3,omitempty"`
+	GroupsV3Create               *WebFeatures_WebFeaturesFlag `protobuf:"varint,4,opt,name=groupsV3Create,enum=protox.WebFeatures_WebFeaturesFlag" json:"groupsV3Create,omitempty"`
+	ChangeNumberV2               *WebFeatures_WebFeaturesFlag `protobuf:"varint,5,opt,name=changeNumberV2,enum=protox.WebFeatures_WebFeaturesFlag" json:"changeNumberV2,omitempty"`
+	QueryStatusV3Thumbnail       *WebFeatures_WebFeaturesFlag `protobuf:"varint,6,opt,name=queryStatusV3Thumbnail,enum=protox.WebFeatures_WebFeaturesFlag" json:"queryStatusV3Thumbnail,omitempty"`
+	LiveLocations                *WebFeatures_WebFeaturesFlag `protobuf:"varint,7,opt,name=liveLocations,enum=protox.WebFeatures_WebFeaturesFlag" json:"liveLocations,omitempty"`
+	QueryVname                   *WebFeatures_WebFeaturesFlag `protobuf:"varint,8,opt,name=queryVname,enum=protox.WebFeatures_WebFeaturesFlag" json:"queryVname,omitempty"`
+	VoipIndividualIncoming       *WebFeatures_WebFeaturesFlag `protobuf:"varint,9,opt,name=voipIndividualIncoming,enum=protox.WebFeatures_WebFeaturesFlag" json:"voipIndividualIncoming,omitempty"`
+	QuickRepliesQuery            *WebFeatures_WebFeaturesFlag `protobuf:"varint,10,opt,name=quickRepliesQuery,enum=protox.WebFeatures_WebFeaturesFlag" json:"quickRepliesQuery,omitempty"`
+	Payments                     *WebFeatures_WebFeaturesFlag `protobuf:"varint,11,opt,name=payments,enum=protox.WebFeatures_WebFeaturesFlag" json:"payments,omitempty"`
+	StickerPackQuery             *WebFeatures_WebFeaturesFlag `protobuf:"varint,12,opt,name=stickerPackQuery,enum=protox.WebFeatures_WebFeaturesFlag" json:"stickerPackQuery,omitempty"`
+	LiveLocationsFinal           *WebFeatures_WebFeaturesFlag `protobuf:"varint,13,opt,name=liveLocationsFinal,enum=protox.WebFeatures_WebFeaturesFlag" json:"liveLocationsFinal,omitempty"`
+	LabelsEdit                   *WebFeatures_WebFeaturesFlag `protobuf:"varint,14,opt,name=labelsEdit,enum=protox.WebFeatures_WebFeaturesFlag" json:"labelsEdit,omitempty"`
+	MediaUpload                  *WebFeatures_WebFeaturesFlag `protobuf:"varint,15,opt,name=mediaUpload,enum=protox.WebFeatures_WebFeaturesFlag" json:"mediaUpload,omitempty"`
+	MediaUploadRichQuickReplies  *WebFeatures_WebFeaturesFlag `protobuf:"varint,18,opt,name=mediaUploadRichQuickReplies,enum=protox.WebFeatures_WebFeaturesFlag" json:"mediaUploadRichQuickReplies,omitempty"`
+	VnameV2                      *WebFeatures_WebFeaturesFlag `protobuf:"varint,19,opt,name=vnameV2,enum=protox.WebFeatures_WebFeaturesFlag" json:"vnameV2,omitempty"`
+	VideoPlaybackUrl             *WebFeatures_WebFeaturesFlag `protobuf:"varint,20,opt,name=videoPlaybackUrl,enum=protox.WebFeatures_WebFeaturesFlag" json:"videoPlaybackUrl,omitempty"`
+	StatusRanking                *WebFeatures_WebFeaturesFlag `protobuf:"varint,21,opt,name=statusRanking,enum=protox.WebFeatures_WebFeaturesFlag" json:"statusRanking,omitempty"`
+	VoipIndividualVideo          *WebFeatures_WebFeaturesFlag `protobuf:"varint,22,opt,name=voipIndividualVideo,enum=protox.WebFeatures_WebFeaturesFlag" json:"voipIndividualVideo,omitempty"`
+	ThirdPartyStickers           *WebFeatures_WebFeaturesFlag `protobuf:"varint,23,opt,name=thirdPartyStickers,enum=protox.WebFeatures_WebFeaturesFlag" json:"thirdPartyStickers,omitempty"`
+	FrequentlyForwardedSetting   *WebFeatures_WebFeaturesFlag `protobuf:"varint,24,opt,name=frequentlyForwardedSetting,enum=protox.WebFeatures_WebFeaturesFlag" json:"frequentlyForwardedSetting,omitempty"`
+	GroupsV4JoinPermission       *WebFeatures_WebFeaturesFlag `protobuf:"varint,25,opt,name=groupsV4JoinPermission,enum=protox.WebFeatures_WebFeaturesFlag" json:"groupsV4JoinPermission,omitempty"`
+	RecentStickers               *WebFeatures_WebFeaturesFlag `protobuf:"varint,26,opt,name=recentStickers,enum=protox.WebFeatures_WebFeaturesFlag" json:"recentStickers,omitempty"`
+	Catalog                      *WebFeatures_WebFeaturesFlag `protobuf:"varint,27,opt,name=catalog,enum=protox.WebFeatures_WebFeaturesFlag" json:"catalog,omitempty"`
+	StarredStickers              *WebFeatures_WebFeaturesFlag `protobuf:"varint,28,opt,name=starredStickers,enum=protox.WebFeatures_WebFeaturesFlag" json:"starredStickers,omitempty"`
+	VoipGroupCall                *WebFeatures_WebFeaturesFlag `protobuf:"varint,29,opt,name=voipGroupCall,enum=protox.WebFeatures_WebFeaturesFlag" json:"voipGroupCall,omitempty"`
+	TemplateMessage              *WebFeatures_WebFeaturesFlag `protobuf:"varint,30,opt,name=templateMessage,enum=protox.WebFeatures_WebFeaturesFlag" json:"templateMessage,omitempty"`
+	TemplateMessageInteractivity *WebFeatures_WebFeaturesFlag `protobuf:"varint,31,opt,name=templateMessageInteractivity,enum=protox.WebFeatures_WebFeaturesFlag" json:"templateMessageInteractivity,omitempty"`
+	EphemeralMessages            *WebFeatures_WebFeaturesFlag `protobuf:"varint,32,opt,name=ephemeralMessages,enum=protox.WebFeatures_WebFeaturesFlag" json:"ephemeralMessages,omitempty"`
+	E2ENotificationSync          *WebFeatures_WebFeaturesFlag `protobuf:"varint,33,opt,name=e2ENotificationSync,enum=protox.WebFeatures_WebFeaturesFlag" json:"e2ENotificationSync,omitempty"`
+	RecentStickersV2             *WebFeatures_WebFeaturesFlag `protobuf:"varint,34,opt,name=recentStickersV2,enum=protox.WebFeatures_WebFeaturesFlag" json:"recentStickersV2,omitempty"`
+	SyncdRelease1                *WebFeatures_WebFeaturesFlag `protobuf:"varint,35,opt,name=syncdRelease1,enum=protox.WebFeatures_WebFeaturesFlag" json:"syncdRelease1,omitempty"`
+	RecentStickersV3             *WebFeatures_WebFeaturesFlag `protobuf:"varint,36,opt,name=recentStickersV3,enum=protox.WebFeatures_WebFeaturesFlag" json:"recentStickersV3,omitempty"`
+	UserNotice                   *WebFeatures_WebFeaturesFlag `protobuf:"varint,37,opt,name=userNotice,enum=protox.WebFeatures_WebFeaturesFlag" json:"userNotice,omitempty"`
+	SyncdRelease11               *WebFeatures_WebFeaturesFlag `protobuf:"varint,38,opt,name=syncdRelease11,enum=protox.WebFeatures_WebFeaturesFlag" json:"syncdRelease11,omitempty"`
 }
 
 func (x *WebFeatures) Reset() {
@@ -7915,16 +7915,16 @@ type PaymentInfo struct {
 	sizeCache     protoimpl.SizeCache
 	unknownFields protoimpl.UnknownFields
 
-	CurrencyDeprecated   *PaymentInfo_PaymentInfoCurrency  `protobuf:"varint,1,opt,name=currencyDeprecated,enum=proto.PaymentInfo_PaymentInfoCurrency" json:"currencyDeprecated,omitempty"`
+	CurrencyDeprecated   *PaymentInfo_PaymentInfoCurrency  `protobuf:"varint,1,opt,name=currencyDeprecated,enum=protox.PaymentInfo_PaymentInfoCurrency" json:"currencyDeprecated,omitempty"`
 	Amount1000           *uint64                           `protobuf:"varint,2,opt,name=amount1000" json:"amount1000,omitempty"`
 	ReceiverJid          *string                           `protobuf:"bytes,3,opt,name=receiverJid" json:"receiverJid,omitempty"`
-	Status               *PaymentInfo_PaymentInfoStatus    `protobuf:"varint,4,opt,name=status,enum=proto.PaymentInfo_PaymentInfoStatus" json:"status,omitempty"`
+	Status               *PaymentInfo_PaymentInfoStatus    `protobuf:"varint,4,opt,name=status,enum=protox.PaymentInfo_PaymentInfoStatus" json:"status,omitempty"`
 	TransactionTimestamp *uint64                           `protobuf:"varint,5,opt,name=transactionTimestamp" json:"transactionTimestamp,omitempty"`
 	RequestMessageKey    *MessageKey                       `protobuf:"bytes,6,opt,name=requestMessageKey" json:"requestMessageKey,omitempty"`
 	ExpiryTimestamp      *uint64                           `protobuf:"varint,7,opt,name=expiryTimestamp" json:"expiryTimestamp,omitempty"`
 	Futureproofed        *bool                             `protobuf:"varint,8,opt,name=futureproofed" json:"futureproofed,omitempty"`
 	Currency             *string                           `protobuf:"bytes,9,opt,name=currency" json:"currency,omitempty"`
-	TxnStatus            *PaymentInfo_PaymentInfoTxnStatus `protobuf:"varint,10,opt,name=txnStatus,enum=proto.PaymentInfo_PaymentInfoTxnStatus" json:"txnStatus,omitempty"`
+	TxnStatus            *PaymentInfo_PaymentInfoTxnStatus `protobuf:"varint,10,opt,name=txnStatus,enum=protox.PaymentInfo_PaymentInfoTxnStatus" json:"txnStatus,omitempty"`
 }
 
 func (x *PaymentInfo) Reset() {
@@ -8037,7 +8037,7 @@ type WebMessageInfo struct {
 	Key                     *MessageKey                                    `protobuf:"bytes,1,req,name=key" json:"key,omitempty"`
 	Message                 *Message                                       `protobuf:"bytes,2,opt,name=message" json:"message,omitempty"`
 	MessageTimestamp        *uint64                                        `protobuf:"varint,3,opt,name=messageTimestamp" json:"messageTimestamp,omitempty"`
-	Status                  *WebMessageInfo_WebMessageInfoStatus           `protobuf:"varint,4,opt,name=status,enum=proto.WebMessageInfo_WebMessageInfoStatus" json:"status,omitempty"`
+	Status                  *WebMessageInfo_WebMessageInfoStatus           `protobuf:"varint,4,opt,name=status,enum=protox.WebMessageInfo_WebMessageInfoStatus" json:"status,omitempty"`
 	Participant             *string                                        `protobuf:"bytes,5,opt,name=participant" json:"participant,omitempty"`
 	Ignore                  *bool                                          `protobuf:"varint,16,opt,name=ignore" json:"ignore,omitempty"`
 	Starred                 *bool                                          `protobuf:"varint,17,opt,name=starred" json:"starred,omitempty"`
@@ -8047,7 +8047,7 @@ type WebMessageInfo struct {
 	Multicast               *bool                                          `protobuf:"varint,21,opt,name=multicast" json:"multicast,omitempty"`
 	UrlText                 *bool                                          `protobuf:"varint,22,opt,name=urlText" json:"urlText,omitempty"`
 	UrlNumber               *bool                                          `protobuf:"varint,23,opt,name=urlNumber" json:"urlNumber,omitempty"`
-	MessageStubType         *WebMessageInfo_WebMessageInfoStubType         `protobuf:"varint,24,opt,name=messageStubType,enum=proto.WebMessageInfo_WebMessageInfoStubType" json:"messageStubType,omitempty"`
+	MessageStubType         *WebMessageInfo_WebMessageInfoStubType         `protobuf:"varint,24,opt,name=messageStubType,enum=protox.WebMessageInfo_WebMessageInfoStubType" json:"messageStubType,omitempty"`
 	ClearMedia              *bool                                          `protobuf:"varint,25,opt,name=clearMedia" json:"clearMedia,omitempty"`
 	MessageStubParameters   []string                                       `protobuf:"bytes,26,rep,name=messageStubParameters" json:"messageStubParameters,omitempty"`
 	Duration                *uint32                                        `protobuf:"varint,27,opt,name=duration" json:"duration,omitempty"`
@@ -8059,7 +8059,7 @@ type WebMessageInfo struct {
 	EphemeralDuration       *uint32                                        `protobuf:"varint,33,opt,name=ephemeralDuration" json:"ephemeralDuration,omitempty"`
 	EphemeralOffToOn        *bool                                          `protobuf:"varint,34,opt,name=ephemeralOffToOn" json:"ephemeralOffToOn,omitempty"`
 	EphemeralOutOfSync      *bool                                          `protobuf:"varint,35,opt,name=ephemeralOutOfSync" json:"ephemeralOutOfSync,omitempty"`
-	BizPrivacyStatus        *WebMessageInfo_WebMessageInfoBizPrivacyStatus `protobuf:"varint,36,opt,name=bizPrivacyStatus,enum=proto.WebMessageInfo_WebMessageInfoBizPrivacyStatus" json:"bizPrivacyStatus,omitempty"`
+	BizPrivacyStatus        *WebMessageInfo_WebMessageInfoBizPrivacyStatus `protobuf:"varint,36,opt,name=bizPrivacyStatus,enum=protox.WebMessageInfo_WebMessageInfoBizPrivacyStatus" json:"bizPrivacyStatus,omitempty"`
 }
 
 func (x *WebMessageInfo) Reset() {
@@ -10137,277 +10137,277 @@ func file_def_proto_rawDescGZIP() []byte {
 var file_def_proto_enumTypes = make([]protoimpl.EnumInfo, 20)
 var file_def_proto_msgTypes = make([]protoimpl.MessageInfo, 71)
 var file_def_proto_goTypes = []interface{}{
-	(AdReplyInfo_AdReplyInfoMediaType)(0),                               // 0: proto.AdReplyInfo.AdReplyInfoMediaType
-	(ExternalAdReplyInfo_ExternalAdReplyInfoMediaType)(0),               // 1: proto.ExternalAdReplyInfo.ExternalAdReplyInfoMediaType
-	(ExtendedTextMessage_ExtendedTextMessageFontType)(0),                // 2: proto.ExtendedTextMessage.ExtendedTextMessageFontType
-	(ExtendedTextMessage_ExtendedTextMessagePreviewType)(0),             // 3: proto.ExtendedTextMessage.ExtendedTextMessagePreviewType
-	(VideoMessage_VideoMessageAttribution)(0),                           // 4: proto.VideoMessage.VideoMessageAttribution
-	(ProtocolMessage_ProtocolMessageType)(0),                            // 5: proto.ProtocolMessage.ProtocolMessageType
-	(HistorySyncNotification_HistorySyncNotificationHistorySyncType)(0), // 6: proto.HistorySyncNotification.HistorySyncNotificationHistorySyncType
-	(HSMDateTimeComponent_HSMDateTimeComponentDayOfWeekType)(0),         // 7: proto.HSMDateTimeComponent.HSMDateTimeComponentDayOfWeekType
-	(HSMDateTimeComponent_HSMDateTimeComponentCalendarType)(0),          // 8: proto.HSMDateTimeComponent.HSMDateTimeComponentCalendarType
-	(OrderMessage_OrderMessageOrderStatus)(0),                           // 9: proto.OrderMessage.OrderMessageOrderStatus
-	(OrderMessage_OrderMessageOrderSurface)(0),                          // 10: proto.OrderMessage.OrderMessageOrderSurface
-	(ListMessage_ListMessageListType)(0),                                // 11: proto.ListMessage.ListMessageListType
-	(ListResponseMessage_ListResponseMessageListType)(0),                // 12: proto.ListResponseMessage.ListResponseMessageListType
-	(WebFeatures_WebFeaturesFlag)(0),                                    // 13: proto.WebFeatures.WebFeaturesFlag
-	(PaymentInfo_PaymentInfoCurrency)(0),                                // 14: proto.PaymentInfo.PaymentInfoCurrency
-	(PaymentInfo_PaymentInfoStatus)(0),                                  // 15: proto.PaymentInfo.PaymentInfoStatus
-	(PaymentInfo_PaymentInfoTxnStatus)(0),                               // 16: proto.PaymentInfo.PaymentInfoTxnStatus
-	(WebMessageInfo_WebMessageInfoStatus)(0),                            // 17: proto.WebMessageInfo.WebMessageInfoStatus
-	(WebMessageInfo_WebMessageInfoStubType)(0),                          // 18: proto.WebMessageInfo.WebMessageInfoStubType
-	(WebMessageInfo_WebMessageInfoBizPrivacyStatus)(0),                  // 19: proto.WebMessageInfo.WebMessageInfoBizPrivacyStatus
-	(*HydratedQuickReplyButton)(nil),                                    // 20: proto.HydratedQuickReplyButton
-	(*HydratedURLButton)(nil),                                           // 21: proto.HydratedURLButton
-	(*HydratedCallButton)(nil),                                          // 22: proto.HydratedCallButton
-	(*HydratedTemplateButton)(nil),                                      // 23: proto.HydratedTemplateButton
-	(*QuickReplyButton)(nil),                                            // 24: proto.QuickReplyButton
-	(*URLButton)(nil),                                                   // 25: proto.URLButton
-	(*CallButton)(nil),                                                  // 26: proto.CallButton
-	(*TemplateButton)(nil),                                              // 27: proto.TemplateButton
-	(*Location)(nil),                                                    // 28: proto.Location
-	(*Point)(nil),                                                       // 29: proto.Point
-	(*InteractiveAnnotation)(nil),                                       // 30: proto.InteractiveAnnotation
-	(*GlobalContextInfo)(nil),                                           // 31: proto.GlobalContextInfo
-	(*AdReplyInfo)(nil),                                                 // 32: proto.AdReplyInfo
-	(*ExternalAdReplyInfo)(nil),                                         // 33: proto.ExternalAdReplyInfo
-	(*ContextInfo)(nil),                                                 // 34: proto.ContextInfo
-	(*SenderKeyDistributionMessage)(nil),                                // 35: proto.SenderKeyDistributionMessage
-	(*ImageMessage)(nil),                                                // 36: proto.ImageMessage
-	(*ContactMessage)(nil),                                              // 37: proto.ContactMessage
-	(*LocationMessage)(nil),                                             // 38: proto.LocationMessage
-	(*ExtendedTextMessage)(nil),                                         // 39: proto.ExtendedTextMessage
-	(*DocumentMessage)(nil),                                             // 40: proto.DocumentMessage
-	(*AudioMessage)(nil),                                                // 41: proto.AudioMessage
-	(*VideoMessage)(nil),                                                // 42: proto.VideoMessage
-	(*Call)(nil),                                                        // 43: proto.Call
-	(*Chat)(nil),                                                        // 44: proto.Chat
-	(*ProtocolMessage)(nil),                                             // 45: proto.ProtocolMessage
-	(*HistorySyncNotification)(nil),                                     // 46: proto.HistorySyncNotification
-	(*AppStateSyncKey)(nil),                                             // 47: proto.AppStateSyncKey
-	(*AppStateSyncKeyId)(nil),                                           // 48: proto.AppStateSyncKeyId
-	(*AppStateSyncKeyFingerprint)(nil),                                  // 49: proto.AppStateSyncKeyFingerprint
-	(*AppStateSyncKeyData)(nil),                                         // 50: proto.AppStateSyncKeyData
-	(*AppStateSyncKeyShare)(nil),                                        // 51: proto.AppStateSyncKeyShare
-	(*AppStateSyncKeyRequest)(nil),                                      // 52: proto.AppStateSyncKeyRequest
-	(*InitialSecurityNotificationSettingSync)(nil),                      // 53: proto.InitialSecurityNotificationSettingSync
-	(*ContactsArrayMessage)(nil),                                        // 54: proto.ContactsArrayMessage
-	(*HSMCurrency)(nil),                                                 // 55: proto.HSMCurrency
-	(*HSMDateTimeComponent)(nil),                                        // 56: proto.HSMDateTimeComponent
-	(*HSMDateTimeUnixEpoch)(nil),                                        // 57: proto.HSMDateTimeUnixEpoch
-	(*HSMDateTime)(nil),                                                 // 58: proto.HSMDateTime
-	(*HSMLocalizableParameter)(nil),                                     // 59: proto.HSMLocalizableParameter
-	(*HighlyStructuredMessage)(nil),                                     // 60: proto.HighlyStructuredMessage
-	(*SendPaymentMessage)(nil),                                          // 61: proto.SendPaymentMessage
-	(*RequestPaymentMessage)(nil),                                       // 62: proto.RequestPaymentMessage
-	(*DeclinePaymentRequestMessage)(nil),                                // 63: proto.DeclinePaymentRequestMessage
-	(*CancelPaymentRequestMessage)(nil),                                 // 64: proto.CancelPaymentRequestMessage
-	(*LiveLocationMessage)(nil),                                         // 65: proto.LiveLocationMessage
-	(*StickerMessage)(nil),                                              // 66: proto.StickerMessage
-	(*FourRowTemplate)(nil),                                             // 67: proto.FourRowTemplate
-	(*HydratedFourRowTemplate)(nil),                                     // 68: proto.HydratedFourRowTemplate
-	(*TemplateMessage)(nil),                                             // 69: proto.TemplateMessage
-	(*TemplateButtonReplyMessage)(nil),                                  // 70: proto.TemplateButtonReplyMessage
-	(*CatalogSnapshot)(nil),                                             // 71: proto.CatalogSnapshot
-	(*ProductSnapshot)(nil),                                             // 72: proto.ProductSnapshot
-	(*ProductMessage)(nil),                                              // 73: proto.ProductMessage
-	(*OrderMessage)(nil),                                                // 74: proto.OrderMessage
-	(*Row)(nil),                                                         // 75: proto.Row
-	(*Section)(nil),                                                     // 76: proto.Section
-	(*ListMessage)(nil),                                                 // 77: proto.ListMessage
-	(*SingleSelectReply)(nil),                                           // 78: proto.SingleSelectReply
-	(*ListResponseMessage)(nil),                                         // 79: proto.ListResponseMessage
-	(*GroupInviteMessage)(nil),                                          // 80: proto.GroupInviteMessage
-	(*EphemeralSetting)(nil),                                            // 81: proto.EphemeralSetting
-	(*DeviceSentMessage)(nil),                                           // 82: proto.DeviceSentMessage
-	(*FutureProofMessage)(nil),                                          // 83: proto.FutureProofMessage
-	(*Message)(nil),                                                     // 84: proto.Message
-	(*MessageKey)(nil),                                                  // 85: proto.MessageKey
-	(*WebFeatures)(nil),                                                 // 86: proto.WebFeatures
-	(*NotificationMessageInfo)(nil),                                     // 87: proto.NotificationMessageInfo
-	(*WebNotificationsInfo)(nil),                                        // 88: proto.WebNotificationsInfo
-	(*PaymentInfo)(nil),                                                 // 89: proto.PaymentInfo
-	(*WebMessageInfo)(nil),                                              // 90: proto.WebMessageInfo
+	(AdReplyInfo_AdReplyInfoMediaType)(0),                               // 0: protox.AdReplyInfo.AdReplyInfoMediaType
+	(ExternalAdReplyInfo_ExternalAdReplyInfoMediaType)(0),               // 1: protox.ExternalAdReplyInfo.ExternalAdReplyInfoMediaType
+	(ExtendedTextMessage_ExtendedTextMessageFontType)(0),                // 2: protox.ExtendedTextMessage.ExtendedTextMessageFontType
+	(ExtendedTextMessage_ExtendedTextMessagePreviewType)(0),             // 3: protox.ExtendedTextMessage.ExtendedTextMessagePreviewType
+	(VideoMessage_VideoMessageAttribution)(0),                           // 4: protox.VideoMessage.VideoMessageAttribution
+	(ProtocolMessage_ProtocolMessageType)(0),                            // 5: protox.ProtocolMessage.ProtocolMessageType
+	(HistorySyncNotification_HistorySyncNotificationHistorySyncType)(0), // 6: protox.HistorySyncNotification.HistorySyncNotificationHistorySyncType
+	(HSMDateTimeComponent_HSMDateTimeComponentDayOfWeekType)(0),         // 7: protox.HSMDateTimeComponent.HSMDateTimeComponentDayOfWeekType
+	(HSMDateTimeComponent_HSMDateTimeComponentCalendarType)(0),          // 8: protox.HSMDateTimeComponent.HSMDateTimeComponentCalendarType
+	(OrderMessage_OrderMessageOrderStatus)(0),                           // 9: protox.OrderMessage.OrderMessageOrderStatus
+	(OrderMessage_OrderMessageOrderSurface)(0),                          // 10: protox.OrderMessage.OrderMessageOrderSurface
+	(ListMessage_ListMessageListType)(0),                                // 11: protox.ListMessage.ListMessageListType
+	(ListResponseMessage_ListResponseMessageListType)(0),                // 12: protox.ListResponseMessage.ListResponseMessageListType
+	(WebFeatures_WebFeaturesFlag)(0),                                    // 13: protox.WebFeatures.WebFeaturesFlag
+	(PaymentInfo_PaymentInfoCurrency)(0),                                // 14: protox.PaymentInfo.PaymentInfoCurrency
+	(PaymentInfo_PaymentInfoStatus)(0),                                  // 15: protox.PaymentInfo.PaymentInfoStatus
+	(PaymentInfo_PaymentInfoTxnStatus)(0),                               // 16: protox.PaymentInfo.PaymentInfoTxnStatus
+	(WebMessageInfo_WebMessageInfoStatus)(0),                            // 17: protox.WebMessageInfo.WebMessageInfoStatus
+	(WebMessageInfo_WebMessageInfoStubType)(0),                          // 18: protox.WebMessageInfo.WebMessageInfoStubType
+	(WebMessageInfo_WebMessageInfoBizPrivacyStatus)(0),                  // 19: protox.WebMessageInfo.WebMessageInfoBizPrivacyStatus
+	(*HydratedQuickReplyButton)(nil),                                    // 20: protox.HydratedQuickReplyButton
+	(*HydratedURLButton)(nil),                                           // 21: protox.HydratedURLButton
+	(*HydratedCallButton)(nil),                                          // 22: protox.HydratedCallButton
+	(*HydratedTemplateButton)(nil),                                      // 23: protox.HydratedTemplateButton
+	(*QuickReplyButton)(nil),                                            // 24: protox.QuickReplyButton
+	(*URLButton)(nil),                                                   // 25: protox.URLButton
+	(*CallButton)(nil),                                                  // 26: protox.CallButton
+	(*TemplateButton)(nil),                                              // 27: protox.TemplateButton
+	(*Location)(nil),                                                    // 28: protox.Location
+	(*Point)(nil),                                                       // 29: protox.Point
+	(*InteractiveAnnotation)(nil),                                       // 30: protox.InteractiveAnnotation
+	(*GlobalContextInfo)(nil),                                           // 31: protox.GlobalContextInfo
+	(*AdReplyInfo)(nil),                                                 // 32: protox.AdReplyInfo
+	(*ExternalAdReplyInfo)(nil),                                         // 33: protox.ExternalAdReplyInfo
+	(*ContextInfo)(nil),                                                 // 34: protox.ContextInfo
+	(*SenderKeyDistributionMessage)(nil),                                // 35: protox.SenderKeyDistributionMessage
+	(*ImageMessage)(nil),                                                // 36: protox.ImageMessage
+	(*ContactMessage)(nil),                                              // 37: protox.ContactMessage
+	(*LocationMessage)(nil),                                             // 38: protox.LocationMessage
+	(*ExtendedTextMessage)(nil),                                         // 39: protox.ExtendedTextMessage
+	(*DocumentMessage)(nil),                                             // 40: protox.DocumentMessage
+	(*AudioMessage)(nil),                                                // 41: protox.AudioMessage
+	(*VideoMessage)(nil),                                                // 42: protox.VideoMessage
+	(*Call)(nil),                                                        // 43: protox.Call
+	(*Chat)(nil),                                                        // 44: protox.Chat
+	(*ProtocolMessage)(nil),                                             // 45: protox.ProtocolMessage
+	(*HistorySyncNotification)(nil),                                     // 46: protox.HistorySyncNotification
+	(*AppStateSyncKey)(nil),                                             // 47: protox.AppStateSyncKey
+	(*AppStateSyncKeyId)(nil),                                           // 48: protox.AppStateSyncKeyId
+	(*AppStateSyncKeyFingerprint)(nil),                                  // 49: protox.AppStateSyncKeyFingerprint
+	(*AppStateSyncKeyData)(nil),                                         // 50: protox.AppStateSyncKeyData
+	(*AppStateSyncKeyShare)(nil),                                        // 51: protox.AppStateSyncKeyShare
+	(*AppStateSyncKeyRequest)(nil),                                      // 52: protox.AppStateSyncKeyRequest
+	(*InitialSecurityNotificationSettingSync)(nil),                      // 53: protox.InitialSecurityNotificationSettingSync
+	(*ContactsArrayMessage)(nil),                                        // 54: protox.ContactsArrayMessage
+	(*HSMCurrency)(nil),                                                 // 55: protox.HSMCurrency
+	(*HSMDateTimeComponent)(nil),                                        // 56: protox.HSMDateTimeComponent
+	(*HSMDateTimeUnixEpoch)(nil),                                        // 57: protox.HSMDateTimeUnixEpoch
+	(*HSMDateTime)(nil),                                                 // 58: protox.HSMDateTime
+	(*HSMLocalizableParameter)(nil),                                     // 59: protox.HSMLocalizableParameter
+	(*HighlyStructuredMessage)(nil),                                     // 60: protox.HighlyStructuredMessage
+	(*SendPaymentMessage)(nil),                                          // 61: protox.SendPaymentMessage
+	(*RequestPaymentMessage)(nil),                                       // 62: protox.RequestPaymentMessage
+	(*DeclinePaymentRequestMessage)(nil),                                // 63: protox.DeclinePaymentRequestMessage
+	(*CancelPaymentRequestMessage)(nil),                                 // 64: protox.CancelPaymentRequestMessage
+	(*LiveLocationMessage)(nil),                                         // 65: protox.LiveLocationMessage
+	(*StickerMessage)(nil),                                              // 66: protox.StickerMessage
+	(*FourRowTemplate)(nil),                                             // 67: protox.FourRowTemplate
+	(*HydratedFourRowTemplate)(nil),                                     // 68: protox.HydratedFourRowTemplate
+	(*TemplateMessage)(nil),                                             // 69: protox.TemplateMessage
+	(*TemplateButtonReplyMessage)(nil),                                  // 70: protox.TemplateButtonReplyMessage
+	(*CatalogSnapshot)(nil),                                             // 71: protox.CatalogSnapshot
+	(*ProductSnapshot)(nil),                                             // 72: protox.ProductSnapshot
+	(*ProductMessage)(nil),                                              // 73: protox.ProductMessage
+	(*OrderMessage)(nil),                                                // 74: protox.OrderMessage
+	(*Row)(nil),                                                         // 75: protox.Row
+	(*Section)(nil),                                                     // 76: protox.Section
+	(*ListMessage)(nil),                                                 // 77: protox.ListMessage
+	(*SingleSelectReply)(nil),                                           // 78: protox.SingleSelectReply
+	(*ListResponseMessage)(nil),                                         // 79: protox.ListResponseMessage
+	(*GroupInviteMessage)(nil),                                          // 80: protox.GroupInviteMessage
+	(*EphemeralSetting)(nil),                                            // 81: protox.EphemeralSetting
+	(*DeviceSentMessage)(nil),                                           // 82: protox.DeviceSentMessage
+	(*FutureProofMessage)(nil),                                          // 83: protox.FutureProofMessage
+	(*Message)(nil),                                                     // 84: protox.Message
+	(*MessageKey)(nil),                                                  // 85: protox.MessageKey
+	(*WebFeatures)(nil),                                                 // 86: protox.WebFeatures
+	(*NotificationMessageInfo)(nil),                                     // 87: protox.NotificationMessageInfo
+	(*WebNotificationsInfo)(nil),                                        // 88: protox.WebNotificationsInfo
+	(*PaymentInfo)(nil),                                                 // 89: protox.PaymentInfo
+	(*WebMessageInfo)(nil),                                              // 90: protox.WebMessageInfo
 }
 var file_def_proto_depIdxs = []int32{
-	20,  // 0: proto.HydratedTemplateButton.quickReplyButton:type_name -> proto.HydratedQuickReplyButton
-	21,  // 1: proto.HydratedTemplateButton.urlButton:type_name -> proto.HydratedURLButton
-	22,  // 2: proto.HydratedTemplateButton.callButton:type_name -> proto.HydratedCallButton
-	60,  // 3: proto.QuickReplyButton.displayText:type_name -> proto.HighlyStructuredMessage
-	60,  // 4: proto.URLButton.displayText:type_name -> proto.HighlyStructuredMessage
-	60,  // 5: proto.URLButton.url:type_name -> proto.HighlyStructuredMessage
-	60,  // 6: proto.CallButton.displayText:type_name -> proto.HighlyStructuredMessage
-	60,  // 7: proto.CallButton.phoneNumber:type_name -> proto.HighlyStructuredMessage
-	24,  // 8: proto.TemplateButton.quickReplyButton:type_name -> proto.QuickReplyButton
-	25,  // 9: proto.TemplateButton.urlButton:type_name -> proto.URLButton
-	26,  // 10: proto.TemplateButton.callButton:type_name -> proto.CallButton
-	29,  // 11: proto.InteractiveAnnotation.polygonVertices:type_name -> proto.Point
-	28,  // 12: proto.InteractiveAnnotation.location:type_name -> proto.Location
-	0,   // 13: proto.AdReplyInfo.mediaType:type_name -> proto.AdReplyInfo.AdReplyInfoMediaType
-	1,   // 14: proto.ExternalAdReplyInfo.mediaType:type_name -> proto.ExternalAdReplyInfo.ExternalAdReplyInfoMediaType
-	84,  // 15: proto.ContextInfo.quotedMessage:type_name -> proto.Message
-	32,  // 16: proto.ContextInfo.quotedAd:type_name -> proto.AdReplyInfo
-	85,  // 17: proto.ContextInfo.placeholderKey:type_name -> proto.MessageKey
-	33,  // 18: proto.ContextInfo.externalAdReply:type_name -> proto.ExternalAdReplyInfo
-	30,  // 19: proto.ImageMessage.interactiveAnnotations:type_name -> proto.InteractiveAnnotation
-	34,  // 20: proto.ImageMessage.contextInfo:type_name -> proto.ContextInfo
-	34,  // 21: proto.ContactMessage.contextInfo:type_name -> proto.ContextInfo
-	34,  // 22: proto.LocationMessage.contextInfo:type_name -> proto.ContextInfo
-	2,   // 23: proto.ExtendedTextMessage.font:type_name -> proto.ExtendedTextMessage.ExtendedTextMessageFontType
-	3,   // 24: proto.ExtendedTextMessage.previewType:type_name -> proto.ExtendedTextMessage.ExtendedTextMessagePreviewType
-	34,  // 25: proto.ExtendedTextMessage.contextInfo:type_name -> proto.ContextInfo
-	34,  // 26: proto.DocumentMessage.contextInfo:type_name -> proto.ContextInfo
-	34,  // 27: proto.AudioMessage.contextInfo:type_name -> proto.ContextInfo
-	30,  // 28: proto.VideoMessage.interactiveAnnotations:type_name -> proto.InteractiveAnnotation
-	34,  // 29: proto.VideoMessage.contextInfo:type_name -> proto.ContextInfo
-	4,   // 30: proto.VideoMessage.gifAttribution:type_name -> proto.VideoMessage.VideoMessageAttribution
-	85,  // 31: proto.ProtocolMessage.key:type_name -> proto.MessageKey
-	5,   // 32: proto.ProtocolMessage.type:type_name -> proto.ProtocolMessage.ProtocolMessageType
-	46,  // 33: proto.ProtocolMessage.historySyncNotification:type_name -> proto.HistorySyncNotification
-	51,  // 34: proto.ProtocolMessage.appStateSyncKeyShare:type_name -> proto.AppStateSyncKeyShare
-	52,  // 35: proto.ProtocolMessage.appStateSyncKeyRequest:type_name -> proto.AppStateSyncKeyRequest
-	53,  // 36: proto.ProtocolMessage.initialSecurityNotificationSettingSync:type_name -> proto.InitialSecurityNotificationSettingSync
-	6,   // 37: proto.HistorySyncNotification.syncType:type_name -> proto.HistorySyncNotification.HistorySyncNotificationHistorySyncType
-	48,  // 38: proto.AppStateSyncKey.keyId:type_name -> proto.AppStateSyncKeyId
-	50,  // 39: proto.AppStateSyncKey.keyData:type_name -> proto.AppStateSyncKeyData
-	49,  // 40: proto.AppStateSyncKeyData.fingerprint:type_name -> proto.AppStateSyncKeyFingerprint
-	47,  // 41: proto.AppStateSyncKeyShare.keys:type_name -> proto.AppStateSyncKey
-	48,  // 42: proto.AppStateSyncKeyRequest.keyIds:type_name -> proto.AppStateSyncKeyId
-	37,  // 43: proto.ContactsArrayMessage.contacts:type_name -> proto.ContactMessage
-	34,  // 44: proto.ContactsArrayMessage.contextInfo:type_name -> proto.ContextInfo
-	7,   // 45: proto.HSMDateTimeComponent.dayOfWeek:type_name -> proto.HSMDateTimeComponent.HSMDateTimeComponentDayOfWeekType
-	8,   // 46: proto.HSMDateTimeComponent.calendar:type_name -> proto.HSMDateTimeComponent.HSMDateTimeComponentCalendarType
-	56,  // 47: proto.HSMDateTime.component:type_name -> proto.HSMDateTimeComponent
-	57,  // 48: proto.HSMDateTime.unixEpoch:type_name -> proto.HSMDateTimeUnixEpoch
-	55,  // 49: proto.HSMLocalizableParameter.currency:type_name -> proto.HSMCurrency
-	58,  // 50: proto.HSMLocalizableParameter.dateTime:type_name -> proto.HSMDateTime
-	59,  // 51: proto.HighlyStructuredMessage.localizableParams:type_name -> proto.HSMLocalizableParameter
-	69,  // 52: proto.HighlyStructuredMessage.hydratedHsm:type_name -> proto.TemplateMessage
-	84,  // 53: proto.SendPaymentMessage.noteMessage:type_name -> proto.Message
-	85,  // 54: proto.SendPaymentMessage.requestMessageKey:type_name -> proto.MessageKey
-	84,  // 55: proto.RequestPaymentMessage.noteMessage:type_name -> proto.Message
-	85,  // 56: proto.DeclinePaymentRequestMessage.key:type_name -> proto.MessageKey
-	85,  // 57: proto.CancelPaymentRequestMessage.key:type_name -> proto.MessageKey
-	34,  // 58: proto.LiveLocationMessage.contextInfo:type_name -> proto.ContextInfo
-	34,  // 59: proto.StickerMessage.contextInfo:type_name -> proto.ContextInfo
-	60,  // 60: proto.FourRowTemplate.content:type_name -> proto.HighlyStructuredMessage
-	60,  // 61: proto.FourRowTemplate.footer:type_name -> proto.HighlyStructuredMessage
-	27,  // 62: proto.FourRowTemplate.buttons:type_name -> proto.TemplateButton
-	40,  // 63: proto.FourRowTemplate.documentMessage:type_name -> proto.DocumentMessage
-	60,  // 64: proto.FourRowTemplate.highlyStructuredMessage:type_name -> proto.HighlyStructuredMessage
-	36,  // 65: proto.FourRowTemplate.imageMessage:type_name -> proto.ImageMessage
-	42,  // 66: proto.FourRowTemplate.videoMessage:type_name -> proto.VideoMessage
-	38,  // 67: proto.FourRowTemplate.locationMessage:type_name -> proto.LocationMessage
-	23,  // 68: proto.HydratedFourRowTemplate.hydratedButtons:type_name -> proto.HydratedTemplateButton
-	40,  // 69: proto.HydratedFourRowTemplate.documentMessage:type_name -> proto.DocumentMessage
-	36,  // 70: proto.HydratedFourRowTemplate.imageMessage:type_name -> proto.ImageMessage
-	42,  // 71: proto.HydratedFourRowTemplate.videoMessage:type_name -> proto.VideoMessage
-	38,  // 72: proto.HydratedFourRowTemplate.locationMessage:type_name -> proto.LocationMessage
-	34,  // 73: proto.TemplateMessage.contextInfo:type_name -> proto.ContextInfo
-	68,  // 74: proto.TemplateMessage.hydratedTemplate:type_name -> proto.HydratedFourRowTemplate
-	67,  // 75: proto.TemplateMessage.fourRowTemplate:type_name -> proto.FourRowTemplate
-	68,  // 76: proto.TemplateMessage.hydratedFourRowTemplate:type_name -> proto.HydratedFourRowTemplate
-	34,  // 77: proto.TemplateButtonReplyMessage.contextInfo:type_name -> proto.ContextInfo
-	36,  // 78: proto.CatalogSnapshot.catalogImage:type_name -> proto.ImageMessage
-	36,  // 79: proto.ProductSnapshot.productImage:type_name -> proto.ImageMessage
-	72,  // 80: proto.ProductMessage.product:type_name -> proto.ProductSnapshot
-	71,  // 81: proto.ProductMessage.catalog:type_name -> proto.CatalogSnapshot
-	34,  // 82: proto.ProductMessage.contextInfo:type_name -> proto.ContextInfo
-	9,   // 83: proto.OrderMessage.status:type_name -> proto.OrderMessage.OrderMessageOrderStatus
-	10,  // 84: proto.OrderMessage.surface:type_name -> proto.OrderMessage.OrderMessageOrderSurface
-	34,  // 85: proto.OrderMessage.contextInfo:type_name -> proto.ContextInfo
-	75,  // 86: proto.Section.rows:type_name -> proto.Row
-	11,  // 87: proto.ListMessage.listType:type_name -> proto.ListMessage.ListMessageListType
-	76,  // 88: proto.ListMessage.sections:type_name -> proto.Section
-	12,  // 89: proto.ListResponseMessage.listType:type_name -> proto.ListResponseMessage.ListResponseMessageListType
-	78,  // 90: proto.ListResponseMessage.singleSelectReply:type_name -> proto.SingleSelectReply
-	34,  // 91: proto.ListResponseMessage.contextInfo:type_name -> proto.ContextInfo
-	34,  // 92: proto.GroupInviteMessage.contextInfo:type_name -> proto.ContextInfo
-	84,  // 93: proto.DeviceSentMessage.message:type_name -> proto.Message
-	81,  // 94: proto.DeviceSentMessage.broadcastEphemeralSettings:type_name -> proto.EphemeralSetting
-	84,  // 95: proto.FutureProofMessage.message:type_name -> proto.Message
-	35,  // 96: proto.Message.senderKeyDistributionMessage:type_name -> proto.SenderKeyDistributionMessage
-	36,  // 97: proto.Message.imageMessage:type_name -> proto.ImageMessage
-	37,  // 98: proto.Message.contactMessage:type_name -> proto.ContactMessage
-	38,  // 99: proto.Message.locationMessage:type_name -> proto.LocationMessage
-	39,  // 100: proto.Message.extendedTextMessage:type_name -> proto.ExtendedTextMessage
-	40,  // 101: proto.Message.documentMessage:type_name -> proto.DocumentMessage
-	41,  // 102: proto.Message.audioMessage:type_name -> proto.AudioMessage
-	42,  // 103: proto.Message.videoMessage:type_name -> proto.VideoMessage
-	43,  // 104: proto.Message.call:type_name -> proto.Call
-	44,  // 105: proto.Message.chat:type_name -> proto.Chat
-	45,  // 106: proto.Message.protocolMessage:type_name -> proto.ProtocolMessage
-	54,  // 107: proto.Message.contactsArrayMessage:type_name -> proto.ContactsArrayMessage
-	60,  // 108: proto.Message.highlyStructuredMessage:type_name -> proto.HighlyStructuredMessage
-	35,  // 109: proto.Message.fastRatchetKeySenderKeyDistributionMessage:type_name -> proto.SenderKeyDistributionMessage
-	61,  // 110: proto.Message.sendPaymentMessage:type_name -> proto.SendPaymentMessage
-	65,  // 111: proto.Message.liveLocationMessage:type_name -> proto.LiveLocationMessage
-	62,  // 112: proto.Message.requestPaymentMessage:type_name -> proto.RequestPaymentMessage
-	63,  // 113: proto.Message.declinePaymentRequestMessage:type_name -> proto.DeclinePaymentRequestMessage
-	64,  // 114: proto.Message.cancelPaymentRequestMessage:type_name -> proto.CancelPaymentRequestMessage
-	69,  // 115: proto.Message.templateMessage:type_name -> proto.TemplateMessage
-	66,  // 116: proto.Message.stickerMessage:type_name -> proto.StickerMessage
-	80,  // 117: proto.Message.groupInviteMessage:type_name -> proto.GroupInviteMessage
-	70,  // 118: proto.Message.templateButtonReplyMessage:type_name -> proto.TemplateButtonReplyMessage
-	73,  // 119: proto.Message.productMessage:type_name -> proto.ProductMessage
-	82,  // 120: proto.Message.deviceSentMessage:type_name -> proto.DeviceSentMessage
-	31,  // 121: proto.Message.globalContextInfo:type_name -> proto.GlobalContextInfo
-	77,  // 122: proto.Message.listMessage:type_name -> proto.ListMessage
-	83,  // 123: proto.Message.viewOnceMessage:type_name -> proto.FutureProofMessage
-	74,  // 124: proto.Message.orderMessage:type_name -> proto.OrderMessage
-	79,  // 125: proto.Message.listResponseMessage:type_name -> proto.ListResponseMessage
-	83,  // 126: proto.Message.ephemeralMessage:type_name -> proto.FutureProofMessage
-	13,  // 127: proto.WebFeatures.labelsDisplay:type_name -> proto.WebFeatures.WebFeaturesFlag
-	13,  // 128: proto.WebFeatures.voipIndividualOutgoing:type_name -> proto.WebFeatures.WebFeaturesFlag
-	13,  // 129: proto.WebFeatures.groupsV3:type_name -> proto.WebFeatures.WebFeaturesFlag
-	13,  // 130: proto.WebFeatures.groupsV3Create:type_name -> proto.WebFeatures.WebFeaturesFlag
-	13,  // 131: proto.WebFeatures.changeNumberV2:type_name -> proto.WebFeatures.WebFeaturesFlag
-	13,  // 132: proto.WebFeatures.queryStatusV3Thumbnail:type_name -> proto.WebFeatures.WebFeaturesFlag
-	13,  // 133: proto.WebFeatures.liveLocations:type_name -> proto.WebFeatures.WebFeaturesFlag
-	13,  // 134: proto.WebFeatures.queryVname:type_name -> proto.WebFeatures.WebFeaturesFlag
-	13,  // 135: proto.WebFeatures.voipIndividualIncoming:type_name -> proto.WebFeatures.WebFeaturesFlag
-	13,  // 136: proto.WebFeatures.quickRepliesQuery:type_name -> proto.WebFeatures.WebFeaturesFlag
-	13,  // 137: proto.WebFeatures.payments:type_name -> proto.WebFeatures.WebFeaturesFlag
-	13,  // 138: proto.WebFeatures.stickerPackQuery:type_name -> proto.WebFeatures.WebFeaturesFlag
-	13,  // 139: proto.WebFeatures.liveLocationsFinal:type_name -> proto.WebFeatures.WebFeaturesFlag
-	13,  // 140: proto.WebFeatures.labelsEdit:type_name -> proto.WebFeatures.WebFeaturesFlag
-	13,  // 141: proto.WebFeatures.mediaUpload:type_name -> proto.WebFeatures.WebFeaturesFlag
-	13,  // 142: proto.WebFeatures.mediaUploadRichQuickReplies:type_name -> proto.WebFeatures.WebFeaturesFlag
-	13,  // 143: proto.WebFeatures.vnameV2:type_name -> proto.WebFeatures.WebFeaturesFlag
-	13,  // 144: proto.WebFeatures.videoPlaybackUrl:type_name -> proto.WebFeatures.WebFeaturesFlag
-	13,  // 145: proto.WebFeatures.statusRanking:type_name -> proto.WebFeatures.WebFeaturesFlag
-	13,  // 146: proto.WebFeatures.voipIndividualVideo:type_name -> proto.WebFeatures.WebFeaturesFlag
-	13,  // 147: proto.WebFeatures.thirdPartyStickers:type_name -> proto.WebFeatures.WebFeaturesFlag
-	13,  // 148: proto.WebFeatures.frequentlyForwardedSetting:type_name -> proto.WebFeatures.WebFeaturesFlag
-	13,  // 149: proto.WebFeatures.groupsV4JoinPermission:type_name -> proto.WebFeatures.WebFeaturesFlag
-	13,  // 150: proto.WebFeatures.recentStickers:type_name -> proto.WebFeatures.WebFeaturesFlag
-	13,  // 151: proto.WebFeatures.catalog:type_name -> proto.WebFeatures.WebFeaturesFlag
-	13,  // 152: proto.WebFeatures.starredStickers:type_name -> proto.WebFeatures.WebFeaturesFlag
-	13,  // 153: proto.WebFeatures.voipGroupCall:type_name -> proto.WebFeatures.WebFeaturesFlag
-	13,  // 154: proto.WebFeatures.templateMessage:type_name -> proto.WebFeatures.WebFeaturesFlag
-	13,  // 155: proto.WebFeatures.templateMessageInteractivity:type_name -> proto.WebFeatures.WebFeaturesFlag
-	13,  // 156: proto.WebFeatures.ephemeralMessages:type_name -> proto.WebFeatures.WebFeaturesFlag
-	13,  // 157: proto.WebFeatures.e2ENotificationSync:type_name -> proto.WebFeatures.WebFeaturesFlag
-	13,  // 158: proto.WebFeatures.recentStickersV2:type_name -> proto.WebFeatures.WebFeaturesFlag
-	13,  // 159: proto.WebFeatures.syncdRelease1:type_name -> proto.WebFeatures.WebFeaturesFlag
-	13,  // 160: proto.WebFeatures.recentStickersV3:type_name -> proto.WebFeatures.WebFeaturesFlag
-	13,  // 161: proto.WebFeatures.userNotice:type_name -> proto.WebFeatures.WebFeaturesFlag
-	13,  // 162: proto.WebFeatures.syncdRelease11:type_name -> proto.WebFeatures.WebFeaturesFlag
-	85,  // 163: proto.NotificationMessageInfo.key:type_name -> proto.MessageKey
-	84,  // 164: proto.NotificationMessageInfo.message:type_name -> proto.Message
-	90,  // 165: proto.WebNotificationsInfo.notifyMessages:type_name -> proto.WebMessageInfo
-	14,  // 166: proto.PaymentInfo.currencyDeprecated:type_name -> proto.PaymentInfo.PaymentInfoCurrency
-	15,  // 167: proto.PaymentInfo.status:type_name -> proto.PaymentInfo.PaymentInfoStatus
-	85,  // 168: proto.PaymentInfo.requestMessageKey:type_name -> proto.MessageKey
-	16,  // 169: proto.PaymentInfo.txnStatus:type_name -> proto.PaymentInfo.PaymentInfoTxnStatus
-	85,  // 170: proto.WebMessageInfo.key:type_name -> proto.MessageKey
-	84,  // 171: proto.WebMessageInfo.message:type_name -> proto.Message
-	17,  // 172: proto.WebMessageInfo.status:type_name -> proto.WebMessageInfo.WebMessageInfoStatus
-	18,  // 173: proto.WebMessageInfo.messageStubType:type_name -> proto.WebMessageInfo.WebMessageInfoStubType
-	89,  // 174: proto.WebMessageInfo.paymentInfo:type_name -> proto.PaymentInfo
-	65,  // 175: proto.WebMessageInfo.finalLiveLocation:type_name -> proto.LiveLocationMessage
-	89,  // 176: proto.WebMessageInfo.quotedPaymentInfo:type_name -> proto.PaymentInfo
-	19,  // 177: proto.WebMessageInfo.bizPrivacyStatus:type_name -> proto.WebMessageInfo.WebMessageInfoBizPrivacyStatus
+	20,  // 0: protox.HydratedTemplateButton.quickReplyButton:type_name -> protox.HydratedQuickReplyButton
+	21,  // 1: protox.HydratedTemplateButton.urlButton:type_name -> protox.HydratedURLButton
+	22,  // 2: protox.HydratedTemplateButton.callButton:type_name -> protox.HydratedCallButton
+	60,  // 3: protox.QuickReplyButton.displayText:type_name -> protox.HighlyStructuredMessage
+	60,  // 4: protox.URLButton.displayText:type_name -> protox.HighlyStructuredMessage
+	60,  // 5: protox.URLButton.url:type_name -> protox.HighlyStructuredMessage
+	60,  // 6: protox.CallButton.displayText:type_name -> protox.HighlyStructuredMessage
+	60,  // 7: protox.CallButton.phoneNumber:type_name -> protox.HighlyStructuredMessage
+	24,  // 8: protox.TemplateButton.quickReplyButton:type_name -> protox.QuickReplyButton
+	25,  // 9: protox.TemplateButton.urlButton:type_name -> protox.URLButton
+	26,  // 10: protox.TemplateButton.callButton:type_name -> protox.CallButton
+	29,  // 11: protox.InteractiveAnnotation.polygonVertices:type_name -> protox.Point
+	28,  // 12: protox.InteractiveAnnotation.location:type_name -> protox.Location
+	0,   // 13: protox.AdReplyInfo.mediaType:type_name -> protox.AdReplyInfo.AdReplyInfoMediaType
+	1,   // 14: protox.ExternalAdReplyInfo.mediaType:type_name -> protox.ExternalAdReplyInfo.ExternalAdReplyInfoMediaType
+	84,  // 15: protox.ContextInfo.quotedMessage:type_name -> protox.Message
+	32,  // 16: protox.ContextInfo.quotedAd:type_name -> protox.AdReplyInfo
+	85,  // 17: protox.ContextInfo.placeholderKey:type_name -> protox.MessageKey
+	33,  // 18: protox.ContextInfo.externalAdReply:type_name -> protox.ExternalAdReplyInfo
+	30,  // 19: protox.ImageMessage.interactiveAnnotations:type_name -> protox.InteractiveAnnotation
+	34,  // 20: protox.ImageMessage.contextInfo:type_name -> protox.ContextInfo
+	34,  // 21: protox.ContactMessage.contextInfo:type_name -> protox.ContextInfo
+	34,  // 22: protox.LocationMessage.contextInfo:type_name -> protox.ContextInfo
+	2,   // 23: protox.ExtendedTextMessage.font:type_name -> protox.ExtendedTextMessage.ExtendedTextMessageFontType
+	3,   // 24: protox.ExtendedTextMessage.previewType:type_name -> protox.ExtendedTextMessage.ExtendedTextMessagePreviewType
+	34,  // 25: protox.ExtendedTextMessage.contextInfo:type_name -> protox.ContextInfo
+	34,  // 26: protox.DocumentMessage.contextInfo:type_name -> protox.ContextInfo
+	34,  // 27: protox.AudioMessage.contextInfo:type_name -> protox.ContextInfo
+	30,  // 28: protox.VideoMessage.interactiveAnnotations:type_name -> protox.InteractiveAnnotation
+	34,  // 29: protox.VideoMessage.contextInfo:type_name -> protox.ContextInfo
+	4,   // 30: protox.VideoMessage.gifAttribution:type_name -> protox.VideoMessage.VideoMessageAttribution
+	85,  // 31: protox.ProtocolMessage.key:type_name -> protox.MessageKey
+	5,   // 32: protox.ProtocolMessage.type:type_name -> protox.ProtocolMessage.ProtocolMessageType
+	46,  // 33: protox.ProtocolMessage.historySyncNotification:type_name -> protox.HistorySyncNotification
+	51,  // 34: protox.ProtocolMessage.appStateSyncKeyShare:type_name -> protox.AppStateSyncKeyShare
+	52,  // 35: protox.ProtocolMessage.appStateSyncKeyRequest:type_name -> protox.AppStateSyncKeyRequest
+	53,  // 36: protox.ProtocolMessage.initialSecurityNotificationSettingSync:type_name -> protox.InitialSecurityNotificationSettingSync
+	6,   // 37: protox.HistorySyncNotification.syncType:type_name -> protox.HistorySyncNotification.HistorySyncNotificationHistorySyncType
+	48,  // 38: protox.AppStateSyncKey.keyId:type_name -> protox.AppStateSyncKeyId
+	50,  // 39: protox.AppStateSyncKey.keyData:type_name -> protox.AppStateSyncKeyData
+	49,  // 40: protox.AppStateSyncKeyData.fingerprint:type_name -> protox.AppStateSyncKeyFingerprint
+	47,  // 41: protox.AppStateSyncKeyShare.keys:type_name -> protox.AppStateSyncKey
+	48,  // 42: protox.AppStateSyncKeyRequest.keyIds:type_name -> protox.AppStateSyncKeyId
+	37,  // 43: protox.ContactsArrayMessage.contacts:type_name -> protox.ContactMessage
+	34,  // 44: protox.ContactsArrayMessage.contextInfo:type_name -> protox.ContextInfo
+	7,   // 45: protox.HSMDateTimeComponent.dayOfWeek:type_name -> protox.HSMDateTimeComponent.HSMDateTimeComponentDayOfWeekType
+	8,   // 46: protox.HSMDateTimeComponent.calendar:type_name -> protox.HSMDateTimeComponent.HSMDateTimeComponentCalendarType
+	56,  // 47: protox.HSMDateTime.component:type_name -> protox.HSMDateTimeComponent
+	57,  // 48: protox.HSMDateTime.unixEpoch:type_name -> protox.HSMDateTimeUnixEpoch
+	55,  // 49: protox.HSMLocalizableParameter.currency:type_name -> protox.HSMCurrency
+	58,  // 50: protox.HSMLocalizableParameter.dateTime:type_name -> protox.HSMDateTime
+	59,  // 51: protox.HighlyStructuredMessage.localizableParams:type_name -> protox.HSMLocalizableParameter
+	69,  // 52: protox.HighlyStructuredMessage.hydratedHsm:type_name -> protox.TemplateMessage
+	84,  // 53: protox.SendPaymentMessage.noteMessage:type_name -> protox.Message
+	85,  // 54: protox.SendPaymentMessage.requestMessageKey:type_name -> protox.MessageKey
+	84,  // 55: protox.RequestPaymentMessage.noteMessage:type_name -> protox.Message
+	85,  // 56: protox.DeclinePaymentRequestMessage.key:type_name -> protox.MessageKey
+	85,  // 57: protox.CancelPaymentRequestMessage.key:type_name -> protox.MessageKey
+	34,  // 58: protox.LiveLocationMessage.contextInfo:type_name -> protox.ContextInfo
+	34,  // 59: protox.StickerMessage.contextInfo:type_name -> protox.ContextInfo
+	60,  // 60: protox.FourRowTemplate.content:type_name -> protox.HighlyStructuredMessage
+	60,  // 61: protox.FourRowTemplate.footer:type_name -> protox.HighlyStructuredMessage
+	27,  // 62: protox.FourRowTemplate.buttons:type_name -> protox.TemplateButton
+	40,  // 63: protox.FourRowTemplate.documentMessage:type_name -> protox.DocumentMessage
+	60,  // 64: protox.FourRowTemplate.highlyStructuredMessage:type_name -> protox.HighlyStructuredMessage
+	36,  // 65: protox.FourRowTemplate.imageMessage:type_name -> protox.ImageMessage
+	42,  // 66: protox.FourRowTemplate.videoMessage:type_name -> protox.VideoMessage
+	38,  // 67: protox.FourRowTemplate.locationMessage:type_name -> protox.LocationMessage
+	23,  // 68: protox.HydratedFourRowTemplate.hydratedButtons:type_name -> protox.HydratedTemplateButton
+	40,  // 69: protox.HydratedFourRowTemplate.documentMessage:type_name -> protox.DocumentMessage
+	36,  // 70: protox.HydratedFourRowTemplate.imageMessage:type_name -> protox.ImageMessage
+	42,  // 71: protox.HydratedFourRowTemplate.videoMessage:type_name -> protox.VideoMessage
+	38,  // 72: protox.HydratedFourRowTemplate.locationMessage:type_name -> protox.LocationMessage
+	34,  // 73: protox.TemplateMessage.contextInfo:type_name -> protox.ContextInfo
+	68,  // 74: protox.TemplateMessage.hydratedTemplate:type_name -> protox.HydratedFourRowTemplate
+	67,  // 75: protox.TemplateMessage.fourRowTemplate:type_name -> protox.FourRowTemplate
+	68,  // 76: protox.TemplateMessage.hydratedFourRowTemplate:type_name -> protox.HydratedFourRowTemplate
+	34,  // 77: protox.TemplateButtonReplyMessage.contextInfo:type_name -> protox.ContextInfo
+	36,  // 78: protox.CatalogSnapshot.catalogImage:type_name -> protox.ImageMessage
+	36,  // 79: protox.ProductSnapshot.productImage:type_name -> protox.ImageMessage
+	72,  // 80: protox.ProductMessage.product:type_name -> protox.ProductSnapshot
+	71,  // 81: protox.ProductMessage.catalog:type_name -> protox.CatalogSnapshot
+	34,  // 82: protox.ProductMessage.contextInfo:type_name -> protox.ContextInfo
+	9,   // 83: protox.OrderMessage.status:type_name -> protox.OrderMessage.OrderMessageOrderStatus
+	10,  // 84: protox.OrderMessage.surface:type_name -> protox.OrderMessage.OrderMessageOrderSurface
+	34,  // 85: protox.OrderMessage.contextInfo:type_name -> protox.ContextInfo
+	75,  // 86: protox.Section.rows:type_name -> protox.Row
+	11,  // 87: protox.ListMessage.listType:type_name -> protox.ListMessage.ListMessageListType
+	76,  // 88: protox.ListMessage.sections:type_name -> protox.Section
+	12,  // 89: protox.ListResponseMessage.listType:type_name -> protox.ListResponseMessage.ListResponseMessageListType
+	78,  // 90: protox.ListResponseMessage.singleSelectReply:type_name -> protox.SingleSelectReply
+	34,  // 91: protox.ListResponseMessage.contextInfo:type_name -> protox.ContextInfo
+	34,  // 92: protox.GroupInviteMessage.contextInfo:type_name -> protox.ContextInfo
+	84,  // 93: protox.DeviceSentMessage.message:type_name -> protox.Message
+	81,  // 94: protox.DeviceSentMessage.broadcastEphemeralSettings:type_name -> protox.EphemeralSetting
+	84,  // 95: protox.FutureProofMessage.message:type_name -> protox.Message
+	35,  // 96: protox.Message.senderKeyDistributionMessage:type_name -> protox.SenderKeyDistributionMessage
+	36,  // 97: protox.Message.imageMessage:type_name -> protox.ImageMessage
+	37,  // 98: protox.Message.contactMessage:type_name -> protox.ContactMessage
+	38,  // 99: protox.Message.locationMessage:type_name -> protox.LocationMessage
+	39,  // 100: protox.Message.extendedTextMessage:type_name -> protox.ExtendedTextMessage
+	40,  // 101: protox.Message.documentMessage:type_name -> protox.DocumentMessage
+	41,  // 102: protox.Message.audioMessage:type_name -> protox.AudioMessage
+	42,  // 103: protox.Message.videoMessage:type_name -> protox.VideoMessage
+	43,  // 104: protox.Message.call:type_name -> protox.Call
+	44,  // 105: protox.Message.chat:type_name -> protox.Chat
+	45,  // 106: protox.Message.protocolMessage:type_name -> protox.ProtocolMessage
+	54,  // 107: protox.Message.contactsArrayMessage:type_name -> protox.ContactsArrayMessage
+	60,  // 108: protox.Message.highlyStructuredMessage:type_name -> protox.HighlyStructuredMessage
+	35,  // 109: protox.Message.fastRatchetKeySenderKeyDistributionMessage:type_name -> protox.SenderKeyDistributionMessage
+	61,  // 110: protox.Message.sendPaymentMessage:type_name -> protox.SendPaymentMessage
+	65,  // 111: protox.Message.liveLocationMessage:type_name -> protox.LiveLocationMessage
+	62,  // 112: protox.Message.requestPaymentMessage:type_name -> protox.RequestPaymentMessage
+	63,  // 113: protox.Message.declinePaymentRequestMessage:type_name -> protox.DeclinePaymentRequestMessage
+	64,  // 114: protox.Message.cancelPaymentRequestMessage:type_name -> protox.CancelPaymentRequestMessage
+	69,  // 115: protox.Message.templateMessage:type_name -> protox.TemplateMessage
+	66,  // 116: protox.Message.stickerMessage:type_name -> protox.StickerMessage
+	80,  // 117: protox.Message.groupInviteMessage:type_name -> protox.GroupInviteMessage
+	70,  // 118: protox.Message.templateButtonReplyMessage:type_name -> protox.TemplateButtonReplyMessage
+	73,  // 119: protox.Message.productMessage:type_name -> protox.ProductMessage
+	82,  // 120: protox.Message.deviceSentMessage:type_name -> protox.DeviceSentMessage
+	31,  // 121: protox.Message.globalContextInfo:type_name -> protox.GlobalContextInfo
+	77,  // 122: protox.Message.listMessage:type_name -> protox.ListMessage
+	83,  // 123: protox.Message.viewOnceMessage:type_name -> protox.FutureProofMessage
+	74,  // 124: protox.Message.orderMessage:type_name -> protox.OrderMessage
+	79,  // 125: protox.Message.listResponseMessage:type_name -> protox.ListResponseMessage
+	83,  // 126: protox.Message.ephemeralMessage:type_name -> protox.FutureProofMessage
+	13,  // 127: protox.WebFeatures.labelsDisplay:type_name -> protox.WebFeatures.WebFeaturesFlag
+	13,  // 128: protox.WebFeatures.voipIndividualOutgoing:type_name -> protox.WebFeatures.WebFeaturesFlag
+	13,  // 129: protox.WebFeatures.groupsV3:type_name -> protox.WebFeatures.WebFeaturesFlag
+	13,  // 130: protox.WebFeatures.groupsV3Create:type_name -> protox.WebFeatures.WebFeaturesFlag
+	13,  // 131: protox.WebFeatures.changeNumberV2:type_name -> protox.WebFeatures.WebFeaturesFlag
+	13,  // 132: protox.WebFeatures.queryStatusV3Thumbnail:type_name -> protox.WebFeatures.WebFeaturesFlag
+	13,  // 133: protox.WebFeatures.liveLocations:type_name -> protox.WebFeatures.WebFeaturesFlag
+	13,  // 134: protox.WebFeatures.queryVname:type_name -> protox.WebFeatures.WebFeaturesFlag
+	13,  // 135: protox.WebFeatures.voipIndividualIncoming:type_name -> protox.WebFeatures.WebFeaturesFlag
+	13,  // 136: protox.WebFeatures.quickRepliesQuery:type_name -> protox.WebFeatures.WebFeaturesFlag
+	13,  // 137: protox.WebFeatures.payments:type_name -> protox.WebFeatures.WebFeaturesFlag
+	13,  // 138: protox.WebFeatures.stickerPackQuery:type_name -> protox.WebFeatures.WebFeaturesFlag
+	13,  // 139: protox.WebFeatures.liveLocationsFinal:type_name -> protox.WebFeatures.WebFeaturesFlag
+	13,  // 140: protox.WebFeatures.labelsEdit:type_name -> protox.WebFeatures.WebFeaturesFlag
+	13,  // 141: protox.WebFeatures.mediaUpload:type_name -> protox.WebFeatures.WebFeaturesFlag
+	13,  // 142: protox.WebFeatures.mediaUploadRichQuickReplies:type_name -> protox.WebFeatures.WebFeaturesFlag
+	13,  // 143: protox.WebFeatures.vnameV2:type_name -> protox.WebFeatures.WebFeaturesFlag
+	13,  // 144: protox.WebFeatures.videoPlaybackUrl:type_name -> protox.WebFeatures.WebFeaturesFlag
+	13,  // 145: protox.WebFeatures.statusRanking:type_name -> protox.WebFeatures.WebFeaturesFlag
+	13,  // 146: protox.WebFeatures.voipIndividualVideo:type_name -> protox.WebFeatures.WebFeaturesFlag
+	13,  // 147: protox.WebFeatures.thirdPartyStickers:type_name -> protox.WebFeatures.WebFeaturesFlag
+	13,  // 148: protox.WebFeatures.frequentlyForwardedSetting:type_name -> protox.WebFeatures.WebFeaturesFlag
+	13,  // 149: protox.WebFeatures.groupsV4JoinPermission:type_name -> protox.WebFeatures.WebFeaturesFlag
+	13,  // 150: protox.WebFeatures.recentStickers:type_name -> protox.WebFeatures.WebFeaturesFlag
+	13,  // 151: protox.WebFeatures.catalog:type_name -> protox.WebFeatures.WebFeaturesFlag
+	13,  // 152: protox.WebFeatures.starredStickers:type_name -> protox.WebFeatures.WebFeaturesFlag
+	13,  // 153: protox.WebFeatures.voipGroupCall:type_name -> protox.WebFeatures.WebFeaturesFlag
+	13,  // 154: protox.WebFeatures.templateMessage:type_name -> protox.WebFeatures.WebFeaturesFlag
+	13,  // 155: protox.WebFeatures.templateMessageInteractivity:type_name -> protox.WebFeatures.WebFeaturesFlag
+	13,  // 156: protox.WebFeatures.ephemeralMessages:type_name -> protox.WebFeatures.WebFeaturesFlag
+	13,  // 157: protox.WebFeatures.e2ENotificationSync:type_name -> protox.WebFeatures.WebFeaturesFlag
+	13,  // 158: protox.WebFeatures.recentStickersV2:type_name -> protox.WebFeatures.WebFeaturesFlag
+	13,  // 159: protox.WebFeatures.syncdRelease1:type_name -> protox.WebFeatures.WebFeaturesFlag
+	13,  // 160: protox.WebFeatures.recentStickersV3:type_name -> protox.WebFeatures.WebFeaturesFlag
+	13,  // 161: protox.WebFeatures.userNotice:type_name -> protox.WebFeatures.WebFeaturesFlag
+	13,  // 162: protox.WebFeatures.syncdRelease11:type_name -> protox.WebFeatures.WebFeaturesFlag
+	85,  // 163: protox.NotificationMessageInfo.key:type_name -> protox.MessageKey
+	84,  // 164: protox.NotificationMessageInfo.message:type_name -> protox.Message
+	90,  // 165: protox.WebNotificationsInfo.notifyMessages:type_name -> protox.WebMessageInfo
+	14,  // 166: protox.PaymentInfo.currencyDeprecated:type_name -> protox.PaymentInfo.PaymentInfoCurrency
+	15,  // 167: protox.PaymentInfo.status:type_name -> protox.PaymentInfo.PaymentInfoStatus
+	85,  // 168: protox.PaymentInfo.requestMessageKey:type_name -> protox.MessageKey
+	16,  // 169: protox.PaymentInfo.txnStatus:type_name -> protox.PaymentInfo.PaymentInfoTxnStatus
+	85,  // 170: protox.WebMessageInfo.key:type_name -> protox.MessageKey
+	84,  // 171: protox.WebMessageInfo.message:type_name -> protox.Message
+	17,  // 172: protox.WebMessageInfo.status:type_name -> protox.WebMessageInfo.WebMessageInfoStatus
+	18,  // 173: protox.WebMessageInfo.messageStubType:type_name -> protox.WebMessageInfo.WebMessageInfoStubType
+	89,  // 174: protox.WebMessageInfo.paymentInfo:type_name -> protox.PaymentInfo
+	65,  // 175: protox.WebMessageInfo.finalLiveLocation:type_name -> protox.LiveLocationMessage
+	89,  // 176: protox.WebMessageInfo.quotedPaymentInfo:type_name -> protox.PaymentInfo
+	19,  // 177: protox.WebMessageInfo.bizPrivacyStatus:type_name -> protox.WebMessageInfo.WebMessageInfoBizPrivacyStatus
 	178, // [178:178] is the sub-list for method output_type
 	178, // [178:178] is the sub-list for method input_type
 	178, // [178:178] is the sub-list for extension type_name

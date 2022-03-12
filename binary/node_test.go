@@ -2,27 +2,27 @@ package binary
 
 import (
 	"fmt"
-	"github.com/cristalinojr/go-whatsapp/binary/proto"
+	"github.com/cristalinojr/go-whatsapp/binary/protox"
 	"reflect"
 	"testing"
 )
 
 func TestMarshal(t *testing.T) {
-	msg := new(proto.WebMessageInfo)
+	msg := new(protox.WebMessageInfo)
 
 	{
 		msg.MessageTimestamp = new(uint64)
 		*msg.MessageTimestamp = 1529341084
 
-		msg.Message = &proto.Message{
+		msg.Message = &protox.Message{
 			Conversation: new(string),
 		}
 		*msg.Message.Conversation = "Testnachricht."
 
-		msg.Status = new(proto.WebMessageInfo_WebMessageInfoStatus)
-		*msg.Status = proto.WebMessageInfo_ERROR
+		msg.Status = new(protox.WebMessageInfo_WebMessageInfoStatus)
+		*msg.Status = protox.WebMessageInfo_ERROR
 
-		msg.Key = &proto.MessageKey{
+		msg.Key = &protox.MessageKey{
 			RemoteJid: new(string),
 			FromMe:    new(bool),
 			Id:        new(string),
