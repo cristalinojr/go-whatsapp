@@ -2,8 +2,8 @@ package binary
 
 import (
 	"fmt"
-	pb "github.com/cristalinojr/go-whatsapp/binary/protox"
 	"github.com/golang/protobuf/proto"
+	pb "go.mau.fi/whatsmeow/binary/proto"
 )
 
 type Node struct {

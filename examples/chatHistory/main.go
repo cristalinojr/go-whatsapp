@@ -3,7 +3,7 @@ package main
 import (
 	"encoding/gob"
 	"fmt"
-	"github.com/cristalinojr/go-whatsapp/binary/protox"
+	"go.mau.fi/whatsmeow/binary/proto"
 	"log"
 	"os"
 	"os/signal"
@@ -23,7 +23,7 @@ func (h *waHandler) ShouldCallSynchronously() bool {
 	return true
 }
 
-func (h *waHandler) HandleRawMessage(message *protox.WebMessageInfo) {
+func (h *waHandler) HandleRawMessage(message *proto.WebMessageInfo) {
 	// gather chats jid info from initial messages
 	if message != nil && message.Key.RemoteJid != nil {
 		h.chats[*message.Key.RemoteJid] = struct{}{}

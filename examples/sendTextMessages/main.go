@@ -6,7 +6,7 @@ import (
 	"os"
 	"time"
 
-	"github.com/cristalinojr/go-whatsapp/binary/protox"
+	"go.mau.fi/whatsmeow/binary/proto"
 
 	qrcodeTerminal "github.com/Baozisoftware/qrcode-terminal-go"
 	"github.com/cristalinojr/go-whatsapp"
@@ -29,7 +29,7 @@ func main() {
 	<-time.After(3 * time.Second)
 
 	previousMessage := "😘"
-	quotedMessage := protox.Message{
+	quotedMessage := proto.Message{
 		Conversation: &previousMessage,
 	}
 

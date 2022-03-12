@@ -6,7 +6,7 @@ import (
 	"strings"
 
 	"github.com/cristalinojr/go-whatsapp/binary"
-	"github.com/cristalinojr/go-whatsapp/binary/protox"
+	"go.mau.fi/whatsmeow/binary/proto"
 )
 
 /*
@@ -114,7 +114,7 @@ Raw messages are the raw protobuf structs instead of the easy-to-use structs in 
 */
 type RawMessageHandler interface {
 	Handler
-	HandleRawMessage(message *protox.WebMessageInfo)
+	HandleRawMessage(message *proto.WebMessageInfo)
 }
 
 // The UnknownBinaryHandler interface needs to be implemented to receive unhandled binary messages.
@@ -375,7 +375,7 @@ func (wac *Conn) handleWithCustomHandlers(message interface{}, handlers []Handle
 			}
 		}
 
-	case *protox.WebMessageInfo:
+	case *proto.WebMessageInfo:
 		for _, h := range handlers {
 			if x, ok := h.(RawMessageHandler); ok {
 				if wac.shouldCallSynchronously(h) {
@@ -474,7 +474,7 @@ func (wac *Conn) dispatch(msg interface{}) {
 		if message.Description == "action" {
 			if con, ok := message.Content.([]interface{}); ok {
 				for a := range con {
-					if v, ok := con[a].(*protox.WebMessageInfo); ok {
+					if v, ok := con[a].(*proto.WebMessageInfo); ok {
 						wac.handle(v)
 						wac.handle(ParseProtoMessage(v))
 					}
