@@ -284,10 +284,11 @@ For:
 	}
 
 	info := resp2[1].(map[string]interface{})
-	if info == nil {
-		return session, errors.New("not valid phone info from Req")
+	if _, ok := info["phone"]; ok {
+		wac.Info = newInfoFromReq(info)
+	} else {
+		return session, errors.New("not a valid phone version")
 	}
-	wac.Info = newInfoFromReq(info)
 
 	session.ClientToken = info["clientToken"].(string)
 	session.ServerToken = info["serverToken"].(string)
@@ -489,10 +490,11 @@ func (wac *Conn) Restore() error {
 	}
 
 	info := connResp[1].(map[string]interface{})
-	if info == nil {
-		return errors.New("not valid phone info from Req")
+	if _, ok := info["phone"]; ok {
+		wac.Info = newInfoFromReq(info)
+	} else {
+		return errors.New("not a valid phone version")
 	}
-	wac.Info = newInfoFromReq(info)
 
 	//set new tokens
 	wac.session.ClientToken = info["clientToken"].(string)
