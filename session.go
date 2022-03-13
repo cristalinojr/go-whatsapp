@@ -60,7 +60,7 @@ type PhoneInfo struct {
 }
 
 func newInfoFromReq(info map[string]interface{}) *Info {
-	phoneInfo := info["phone"].(map[string]interface{})
+	// phoneInfo := info["phone"].(map[string]interface{})
 
 	ret := &Info{
 		Battery:   int(info["battery"].(float64)),
@@ -69,15 +69,14 @@ func newInfoFromReq(info map[string]interface{}) *Info {
 		Pushname:  info["pushname"].(string),
 		Wid:       info["wid"].(string),
 		Lc:        info["lc"].(string),
-		Phone: &PhoneInfo{
-			phoneInfo["mcc"].(string),
-			phoneInfo["mnc"].(string),
-			phoneInfo["os_version"].(string),
-			phoneInfo["device_manufacturer"].(string),
-			phoneInfo["device_model"].(string),
-			phoneInfo["os_build_number"].(string),
-			phoneInfo["wa_version"].(string),
-		},
+		Phone:     &PhoneInfo{"", "", "", "", "", "", ""},
+		//phoneInfo["mcc"].(string),
+		//phoneInfo["mnc"].(string),
+		//phoneInfo["os_version"].(string),
+		//phoneInfo["device_manufacturer"].(string),
+		//phoneInfo["device_model"].(string),
+		//phoneInfo["os_build_number"].(string),
+		//phoneInfo["wa_version"].(string),
 		Plugged: info["plugged"].(bool),
 		Lg:      info["lg"].(string),
 		Tos:     int(info["tos"].(float64)),
