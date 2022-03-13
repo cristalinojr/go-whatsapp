@@ -6,6 +6,7 @@ import (
 	"crypto/sha256"
 	"encoding/base64"
 	"encoding/json"
+	"errors"
 	"fmt"
 	"strconv"
 	"strings"
@@ -60,7 +61,7 @@ type PhoneInfo struct {
 }
 
 func newInfoFromReq(info map[string]interface{}) *Info {
-	// phoneInfo := info["phone"].(map[string]interface{})
+	phoneInfo := info["phone"].(map[string]interface{})
 
 	ret := &Info{
 		Battery:   int(info["battery"].(float64)),
@@ -69,14 +70,15 @@ func newInfoFromReq(info map[string]interface{}) *Info {
 		Pushname:  info["pushname"].(string),
 		Wid:       info["wid"].(string),
 		Lc:        info["lc"].(string),
-		Phone:     &PhoneInfo{"", "", "", "", "", "", ""},
-		//phoneInfo["mcc"].(string),
-		//phoneInfo["mnc"].(string),
-		//phoneInfo["os_version"].(string),
-		//phoneInfo["device_manufacturer"].(string),
-		//phoneInfo["device_model"].(string),
-		//phoneInfo["os_build_number"].(string),
-		//phoneInfo["wa_version"].(string),
+		Phone: &PhoneInfo{
+			phoneInfo["mcc"].(string),
+			phoneInfo["mnc"].(string),
+			phoneInfo["os_version"].(string),
+			phoneInfo["device_manufacturer"].(string),
+			phoneInfo["device_model"].(string),
+			phoneInfo["os_build_number"].(string),
+			phoneInfo["wa_version"].(string),
+		},
 		Plugged: info["plugged"].(bool),
 		Lg:      info["lg"].(string),
 		Tos:     int(info["tos"].(float64)),
@@ -282,7 +284,9 @@ For:
 	}
 
 	info := resp2[1].(map[string]interface{})
-
+	if info == nil {
+		return session, errors.New("not valid phone info from Req")
+	}
 	wac.Info = newInfoFromReq(info)
 
 	session.ClientToken = info["clientToken"].(string)
@@ -485,7 +489,9 @@ func (wac *Conn) Restore() error {
 	}
 
 	info := connResp[1].(map[string]interface{})
-
+	if info == nil {
+		return errors.New("not valid phone info from Req")
+	}
 	wac.Info = newInfoFromReq(info)
 
 	//set new tokens
