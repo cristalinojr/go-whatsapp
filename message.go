@@ -266,7 +266,7 @@ func getInfoProto(info *MessageInfo) *proto.WebMessageInfo {
 	}
 	info.FromMe = true
 
-	status := proto.WebMessageInfo_WebMessageInfoStatus(info.Status)
+	status := proto.WebMessageInfo_Status(info.Status)
 
 	return &proto.WebMessageInfo{
 		Key: &proto.MessageKey{
