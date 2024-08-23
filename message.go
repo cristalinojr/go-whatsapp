@@ -132,8 +132,8 @@ func (wac *Conn) RevokeMessage(remotejid, msgid string, fromme bool) (revokeid s
 	revoker := &proto.WebMessageInfo{
 		Key: &proto.MessageKey{
 			FromMe:    &fromme,
-			Id:        &revocationID,
-			RemoteJid: &remotejid,
+			ID:        &revocationID,
+			RemoteJID: &remotejid,
 		},
 		MessageTimestamp: &ts,
 		Message: &proto.Message{
@@ -141,8 +141,8 @@ func (wac *Conn) RevokeMessage(remotejid, msgid string, fromme bool) (revokeid s
 				Type: &mtype,
 				Key: &proto.MessageKey{
 					FromMe:    &fromme,
-					Id:        &msgid,
-					RemoteJid: &remotejid,
+					ID:        &msgid,
+					RemoteJID: &remotejid,
 				},
 			},
 		},
@@ -271,8 +271,8 @@ func getInfoProto(info *MessageInfo) *proto.WebMessageInfo {
 	return &proto.WebMessageInfo{
 		Key: &proto.MessageKey{
 			FromMe:    &info.FromMe,
-			RemoteJid: &info.RemoteJid,
-			Id:        &info.Id,
+			RemoteJID: &info.RemoteJid,
+			ID:        &info.Id,
 		},
 		MessageTimestamp: &info.Timestamp,
 		Status:           &status,
@@ -303,7 +303,7 @@ func getMessageContext(msg *proto.ContextInfo) ContextInfo {
 func getContextInfoProto(context *ContextInfo) *proto.ContextInfo {
 	if len(context.QuotedMessageID) > 0 {
 		contextInfo := &proto.ContextInfo{
-			StanzaId: &context.QuotedMessageID,
+			StanzaID: &context.QuotedMessageID,
 		}
 
 		if &context.QuotedMessage != nil {
@@ -384,12 +384,12 @@ func getImageMessage(msg *proto.WebMessageInfo) ImageMessage {
 	imageMessage := ImageMessage{
 		Info:          getMessageInfo(msg),
 		Caption:       image.GetCaption(),
-		Thumbnail:     image.GetJpegThumbnail(),
-		url:           image.GetUrl(),
+		Thumbnail:     image.GetJPEGThumbnail(),
+		url:           image.GetURL(),
 		mediaKey:      image.GetMediaKey(),
 		Type:          image.GetMimetype(),
-		fileEncSha256: image.GetFileEncSha256(),
-		fileSha256:    image.GetFileSha256(),
+		fileEncSha256: image.GetFileEncSHA256(),
+		fileSha256:    image.GetFileSHA256(),
 		fileLength:    image.GetFileLength(),
 		ContextInfo:   getMessageContext(image.GetContextInfo()),
 	}
@@ -404,12 +404,12 @@ func getImageProto(msg ImageMessage) *proto.WebMessageInfo {
 	p.Message = &proto.Message{
 		ImageMessage: &proto.ImageMessage{
 			Caption:       &msg.Caption,
-			JpegThumbnail: msg.Thumbnail,
-			Url:           &msg.url,
+			JPEGThumbnail: msg.Thumbnail,
+			URL:           &msg.url,
 			MediaKey:      msg.mediaKey,
 			Mimetype:      &msg.Type,
-			FileEncSha256: msg.fileEncSha256,
-			FileSha256:    msg.fileSha256,
+			FileEncSHA256: msg.fileEncSha256,
+			FileSHA256:    msg.fileSha256,
 			FileLength:    &msg.fileLength,
 			ContextInfo:   contextInfo,
 		},
@@ -450,14 +450,14 @@ func getVideoMessage(msg *proto.WebMessageInfo) VideoMessage {
 	videoMessage := VideoMessage{
 		Info:          getMessageInfo(msg),
 		Caption:       vid.GetCaption(),
-		Thumbnail:     vid.GetJpegThumbnail(),
+		Thumbnail:     vid.GetJPEGThumbnail(),
 		GifPlayback:   vid.GetGifPlayback(),
-		url:           vid.GetUrl(),
+		url:           vid.GetURL(),
 		mediaKey:      vid.GetMediaKey(),
 		Length:        vid.GetSeconds(),
 		Type:          vid.GetMimetype(),
-		fileEncSha256: vid.GetFileEncSha256(),
-		fileSha256:    vid.GetFileSha256(),
+		fileEncSha256: vid.GetFileEncSHA256(),
+		fileSha256:    vid.GetFileSHA256(),
 		fileLength:    vid.GetFileLength(),
 		ContextInfo:   getMessageContext(vid.GetContextInfo()),
 	}
@@ -472,13 +472,13 @@ func getVideoProto(msg VideoMessage) *proto.WebMessageInfo {
 	p.Message = &proto.Message{
 		VideoMessage: &proto.VideoMessage{
 			Caption:       &msg.Caption,
-			JpegThumbnail: msg.Thumbnail,
-			Url:           &msg.url,
+			JPEGThumbnail: msg.Thumbnail,
+			URL:           &msg.url,
 			GifPlayback:   &msg.GifPlayback,
 			MediaKey:      msg.mediaKey,
 			Seconds:       &msg.Length,
-			FileEncSha256: msg.fileEncSha256,
-			FileSha256:    msg.fileSha256,
+			FileEncSHA256: msg.fileEncSha256,
+			FileSHA256:    msg.fileSha256,
 			FileLength:    &msg.fileLength,
 			Mimetype:      &msg.Type,
 			ContextInfo:   contextInfo,
@@ -517,12 +517,12 @@ func getAudioMessage(msg *proto.WebMessageInfo) AudioMessage {
 
 	audioMessage := AudioMessage{
 		Info:          getMessageInfo(msg),
-		url:           aud.GetUrl(),
+		url:           aud.GetURL(),
 		mediaKey:      aud.GetMediaKey(),
 		Length:        aud.GetSeconds(),
 		Type:          aud.GetMimetype(),
-		fileEncSha256: aud.GetFileEncSha256(),
-		fileSha256:    aud.GetFileSha256(),
+		fileEncSha256: aud.GetFileEncSHA256(),
+		fileSha256:    aud.GetFileSHA256(),
 		fileLength:    aud.GetFileLength(),
 		ContextInfo:   getMessageContext(aud.GetContextInfo()),
 	}
@@ -535,15 +535,15 @@ func getAudioProto(msg AudioMessage) *proto.WebMessageInfo {
 	contextInfo := getContextInfoProto(&msg.ContextInfo)
 	p.Message = &proto.Message{
 		AudioMessage: &proto.AudioMessage{
-			Url:           &msg.url,
+			URL:           &msg.url,
 			MediaKey:      msg.mediaKey,
 			Seconds:       &msg.Length,
-			FileEncSha256: msg.fileEncSha256,
-			FileSha256:    msg.fileSha256,
+			FileEncSHA256: msg.fileEncSha256,
+			FileSHA256:    msg.fileSha256,
 			FileLength:    &msg.fileLength,
 			Mimetype:      &msg.Type,
 			ContextInfo:   contextInfo,
-			Ptt:           &msg.Ptt,
+			PTT:           &msg.Ptt,
 		},
 	}
 	return p
@@ -585,11 +585,11 @@ func getDocumentMessage(msg *proto.WebMessageInfo) DocumentMessage {
 		PageCount:     doc.GetPageCount(),
 		Type:          doc.GetMimetype(),
 		FileName:      doc.GetFileName(),
-		Thumbnail:     doc.GetJpegThumbnail(),
-		url:           doc.GetUrl(),
+		Thumbnail:     doc.GetJPEGThumbnail(),
+		url:           doc.GetURL(),
 		mediaKey:      doc.GetMediaKey(),
-		fileEncSha256: doc.GetFileEncSha256(),
-		fileSha256:    doc.GetFileSha256(),
+		fileEncSha256: doc.GetFileEncSHA256(),
+		fileSha256:    doc.GetFileSHA256(),
 		fileLength:    doc.GetFileLength(),
 		ContextInfo:   getMessageContext(doc.GetContextInfo()),
 	}
@@ -602,11 +602,11 @@ func getDocumentProto(msg DocumentMessage) *proto.WebMessageInfo {
 	contextInfo := getContextInfoProto(&msg.ContextInfo)
 	p.Message = &proto.Message{
 		DocumentMessage: &proto.DocumentMessage{
-			JpegThumbnail: msg.Thumbnail,
-			Url:           &msg.url,
+			JPEGThumbnail: msg.Thumbnail,
+			URL:           &msg.url,
 			MediaKey:      msg.mediaKey,
-			FileEncSha256: msg.fileEncSha256,
-			FileSha256:    msg.fileSha256,
+			FileEncSHA256: msg.fileEncSha256,
+			FileSHA256:    msg.fileSha256,
 			FileLength:    &msg.fileLength,
 			PageCount:     &msg.PageCount,
 			Title:         &msg.Title,
@@ -647,8 +647,8 @@ func GetLocationMessage(msg *proto.WebMessageInfo) LocationMessage {
 		DegreesLongitude: loc.GetDegreesLongitude(),
 		Name:             loc.GetName(),
 		Address:          loc.GetAddress(),
-		Url:              loc.GetUrl(),
-		JpegThumbnail:    loc.GetJpegThumbnail(),
+		Url:              loc.GetURL(),
+		JpegThumbnail:    loc.GetJPEGThumbnail(),
 		ContextInfo:      getMessageContext(loc.GetContextInfo()),
 	}
 
@@ -665,8 +665,8 @@ func GetLocationProto(msg LocationMessage) *proto.WebMessageInfo {
 			DegreesLongitude: &msg.DegreesLongitude,
 			Name:             &msg.Name,
 			Address:          &msg.Address,
-			Url:              &msg.Url,
-			JpegThumbnail:    msg.JpegThumbnail,
+			URL:              &msg.Url,
+			JPEGThumbnail:    msg.JpegThumbnail,
 			ContextInfo:      contextInfo,
 		},
 	}
@@ -701,7 +701,7 @@ func GetLiveLocationMessage(msg *proto.WebMessageInfo) LiveLocationMessage {
 		DegreesClockwiseFromMagneticNorth: loc.GetDegreesClockwiseFromMagneticNorth(),
 		Caption:                           loc.GetCaption(),
 		SequenceNumber:                    loc.GetSequenceNumber(),
-		JpegThumbnail:                     loc.GetJpegThumbnail(),
+		JpegThumbnail:                     loc.GetJPEGThumbnail(),
 		ContextInfo:                       getMessageContext(loc.GetContextInfo()),
 	}
 
@@ -720,7 +720,7 @@ func GetLiveLocationProto(msg LiveLocationMessage) *proto.WebMessageInfo {
 			DegreesClockwiseFromMagneticNorth: &msg.DegreesClockwiseFromMagneticNorth,
 			Caption:                           &msg.Caption,
 			SequenceNumber:                    &msg.SequenceNumber,
-			JpegThumbnail:                     msg.JpegThumbnail,
+			JPEGThumbnail:                     msg.JpegThumbnail,
 			ContextInfo:                       contextInfo,
 		},
 	}
@@ -749,11 +749,11 @@ func getStickerMessage(msg *proto.WebMessageInfo) StickerMessage {
 
 	stickerMessage := StickerMessage{
 		Info:          getMessageInfo(msg),
-		url:           sticker.GetUrl(),
+		url:           sticker.GetURL(),
 		mediaKey:      sticker.GetMediaKey(),
 		Type:          sticker.GetMimetype(),
-		fileEncSha256: sticker.GetFileEncSha256(),
-		fileSha256:    sticker.GetFileSha256(),
+		fileEncSha256: sticker.GetFileEncSHA256(),
+		fileSha256:    sticker.GetFileSHA256(),
 		fileLength:    sticker.GetFileLength(),
 		ContextInfo:   getMessageContext(sticker.GetContextInfo()),
 	}

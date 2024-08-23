@@ -101,7 +101,7 @@ func (wac *Conn) LoadFullChatHistory(jid string, chunkSize int,
 				break
 			}
 
-			beforeMsg = *msgs[0].Key.Id
+			beforeMsg = *msgs[0].Key.ID
 			beforeMsgIsOwner = msgs[0].Key.FromMe != nil && *msgs[0].Key.FromMe
 		}
 
@@ -169,7 +169,7 @@ func (wac *Conn) LoadFullChatHistoryAfter(jid string, messageId string, chunkSiz
 				break
 			}
 
-			messageId = *msgs[0].Key.Id
+			messageId = *msgs[0].Key.ID
 			msgOwner = msgs[0].Key.FromMe != nil && *msgs[0].Key.FromMe
 		}
 
